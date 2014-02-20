@@ -1,16 +1,20 @@
 {
     "technologies": {
         "apis": [
-            "insert apis"
+            "Google Plus",
+            "Picasa",
+            "Instagram"
         ],
         "platforms": [
-            "insert platforms"
+            "windows"
         ],
         "toolkits": [
-            "insert toolkits"
+            "toxiclibs"
         ]
     },
     "themes": [
-        "insert themes"
+        "Art",
+        "Visualization",
+        "3D"
     ]
 }
