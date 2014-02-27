@@ -4,7 +4,7 @@ After cleaning and tidying up the code, I pushed forward some more visualization
 
 The first thing I noticed was that things didn't really appear like they should be! In the "Gioconda" picture, for example, I was expecting way more "greens" - I actually spent some time trying to debug the code as I was thinking I was ding something wrong... this visualization only maps the spectrum (Hue) of the color, ignoring saturation and brightness - really makes you think how much depth there is behind this pictures and the concept of "color" in general".
 
-![stars](/project_images/03sunday.png?raw=true "stars")
+![sunday](/project_images/03sunday.png "sunday")
 
 The more I play around the more ideas I get! I'd like to implement saturation and brightness alongside the Hue in my next test to see if things fall better in their places. Plus, looking at those images, I thought it would be fun to arrange the "tiles" based on their size in order to build a little "pyramid" unique to the image... I've got even more ideas about future implementations of the tool, but I'll save that for a full-fledged post!
 
