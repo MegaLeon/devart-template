@@ -38,6 +38,7 @@ void drawGrid(int _x, int _y, int size, int count) {
 void drawElementsRemap(int _x, int _y, int _z, int size, int count, int scale) {
   int snap = size/count;
   float scaleValue = (cubeRgbMax) / (size);
+  float sizeValue;
 
   for (int i = 1; i < count; i++) {
     for (int j = 1; j < count; j++) {
@@ -48,13 +49,16 @@ void drawElementsRemap(int _x, int _y, int _z, int size, int count, int scale) {
         translate((_x - size/2) + i * (size/count), (_y - size/2) + j * (size/count), (_z - size/2) + k* (size/count));
 
         // get the color by mapping the current slot against the color array
+        colorMode(RGB, 255);
         fill(map(i, 0, count, 0, 255), map(j, 0, count, 0, 255), map(k, 0, count, 0, 255));
         stroke(map(i, 0, count, 0, 128), map(j, 0, count, 0, 128), map(k, 0, count, 0, 128));
 
         // draw a cube if bigger than treshold value
         //box(map(colorMatrixRemap[i][j][k], 0, cubeRgbMax, 0, cubeRgbMax/scaleValue/count));
-        box(constrain(colorMatrixRemap[i][j][k]/count, 0, size/count));
-
+        sizeValue = constrain(colorMatrixRemap[i][j][k]/count, 0, size/count);
+        if (sizeValue > 0) {
+          box(sizeValue);
+        }
         popMatrix();
       }
     }
@@ -74,11 +78,13 @@ void drawElementsPyramidHue(int _x, int _y, int _z, int size, int count, int sca
     colorMode(HSB, 360, 100, 100);
     fill(map(i, 0, count, 0, 360), 90, 75);
     stroke(map(i, 0, count, 0, 360), 90, 25);
-
+    
     // draw a cube if bigger than treshold value
     //stepSize = constrain(map(colorMatrixHuePyramid[i], 0, size*size, 0, size/2), 0, size);
     stepSize = map(colorMatrixHuePyramid[i], 0, hueMax, 0, hueMax/scaleValue);
-    box(stepSize, size/count, stepSize);
+    if (stepSize > 0) {
+      box(stepSize, size/count, stepSize);
+    }
 
     popMatrix();
   }

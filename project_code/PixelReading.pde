@@ -3,7 +3,7 @@ void readPixelsRemap(int count) {
   color currentCol;
   float r, g, b;
   int buffer = 0;
-  int hue = 0;
+  int pxHue = 0;
   float currentValue;
   for (int i = 0; i < img.width; i++) {
     currentPixelX = i;
@@ -14,7 +14,7 @@ void readPixelsRemap(int count) {
       r = red(currentCol);
       g = green(currentCol);
       b = blue(currentCol);
-      hue = int(hue(currentCol));
+      pxHue = int(hue(currentCol));
 
       // RGB Cube Matrix
       if (i % count == 0 && j % count == 0) { //if both are on the countTh pixel
@@ -29,13 +29,13 @@ void readPixelsRemap(int count) {
       }
 
       // Hue Pyramid Matrix      
-      colorMatrixHuePyramid[int(map(hue, 0, 360, 0, count))] += 1;
-      currentValue = colorMatrixHuePyramid[int(map(hue, 0, 360, 0, count))];
+      colorMatrixHuePyramid[int(map(pxHue, 0, 360, 0, count))] += 1;
+      currentValue = colorMatrixHuePyramid[int(map(pxHue, 0, 360, 0, count))];
       //Sets new max value
       hueMax = getMaxValue(hueMax, currentValue);
 
       // increase whole hue array for debug purposes
-      hueVal[hue] ++;
+      hueVal[pxHue] ++;
     }
   }
 }
@@ -43,14 +43,14 @@ void readPixelsRemap(int count) {
 void readPixelsAnimated(int count, int currentPixelX, int currentPixelY) {
   color currentCol = 0;
   float r, g, b;
-  int hue = 0;
+  int pxHue = 0;
   float currentValue = 0;
 
   currentCol = img.get(currentPixelX, currentPixelY);  
   r = constrain(red(currentCol), 0, 255);
   g = constrain(green(currentCol), 0, 255);
   b = constrain(blue(currentCol), 0, 255);
-  hue = int(hue(currentCol));
+  pxHue = int(hue(currentCol));
   
   colorMatrixRemap[floor(map(r, 0, 255, 0, count-1))][floor(map(g, 0, 255, 0, count-1))][floor(map(b, 0, 255, 0, count-1))]  += 1;
   currentValue = colorMatrixRemap[floor(map(r, 0, 255, 0, count-1))][floor(map(g, 0, 255, 0, count-1))][floor(map(b, 0, 255, 0, count-1))];
@@ -58,8 +58,8 @@ void readPixelsAnimated(int count, int currentPixelX, int currentPixelY) {
   cubeRgbMax = getMaxValue(cubeRgbMax, currentValue);
 
   // Hue Pyramid Matrix      
-  colorMatrixHuePyramid[int(map(hue, 0, 360, 0, count))] += 1;
-  currentValue = colorMatrixHuePyramid[int(map(hue, 0, 360, 0, count))];
+  colorMatrixHuePyramid[int(map(pxHue, 0, 360, 0, count))] += 1;
+  currentValue = colorMatrixHuePyramid[int(map(pxHue, 0, 360, 0, count))];
   //Sets new max value
   hueMax = getMaxValue(hueMax, currentValue);
 }
