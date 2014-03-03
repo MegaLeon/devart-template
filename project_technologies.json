@@ -9,6 +9,7 @@
             "Windows"
         ],
         "toolkits": [
+            "WebGL"
             "ToxicLibs"
         ]
     },
