@@ -15,7 +15,7 @@ The user will be able to choose some custom parameters to change the final shape
 I am planning to include a few popularing painting within the application, but I want to implement Goggle+, Instgrams and other APIs in order to make the user choose a picture of his own, or to take a picture through a webcam.
 
 ## Link to Prototype
-- [ArsMatrixPrototype](http://www.openprocessing.org/sketch/137432/embed/?width=1000&height=500&border=true "ArsMatrix Prototype 1")
+- [ArsMatrix Prototype 01](http://www.openprocessing.org/sketch/137432/embed/?width=1000&height=500&border=true "ArsMatrix Prototype 01")
 
 
 ## Libraries Used
