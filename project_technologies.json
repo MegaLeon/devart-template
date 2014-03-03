@@ -6,10 +6,11 @@
             "Instagram"
         ],
         "platforms": [
-            "windows"
+            "Windows"
         ],
         "toolkits": [
-            "toxiclibs"
+            "OpenGL"
+            "ToxicLibs"
         ]
     },
     "themes": [
