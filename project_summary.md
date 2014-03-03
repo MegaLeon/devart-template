@@ -16,6 +16,7 @@ I am planning to include a few popularing painting within the application, but I
 
 ## Link to Prototype
 - [ArsMatrix Prototype 01](http://www.openprocessing.org/sketch/137432/embed/?width=1000&height=500&border=true "ArsMatrix Prototype 01")
+Use the GUI on the right to change settings - drag the slider to switch between different paintings, click "Start Mapping" to restart the process
 
 
 ## Libraries Used
