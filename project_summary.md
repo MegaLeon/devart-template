@@ -8,7 +8,7 @@ because 2 dimensions are not enough.
 - Leonardo Cavaletti - https://github.com/MegaLeon
 
 ## Description
-ArsMatrix will be an interactive project that maps the color information of an image to a three-dimensional Matrix, generating a 3D structure unique to each image.
+ArsMatrix will be an interactive Processing Project that maps the color information of an image to a three-dimensional Matrix, generating a 3D structure unique to each image.
 
 The user will be able to choose some custom parameters to change the final shape of the piece, and the process will be animated and show the 3D piece come to life as the image is being scanned, in a very sci-fi fashion, but way more colorful. 
 
