@@ -64,9 +64,18 @@
         		pjs.startProcess();
     		};
 
+    		this.changeVis = function(){
+				var pjs = Processing.getInstanceById('@@id@@');
+				pjs.changeVisMode();
+				pjs.setCurrentImg(imageChosen);
+				pjs.setSubdivisions(subdivsions);
+
+        		pjs.startProcess();
+    		};
+
 			window.onload = function() {		
 			  	var gui = new dat.GUI();
-			  	gui.add(window, 'visualMode', 0, 1).step(1).name("Visualization");
+			  	gui.add(window, 'changeVis').name("Change Visualiz.");
 			  	gui.add(window, 'imageChosen', 0, 4).step(1).name("Image");
 			  	gui.add(window, 'subdivsions', 8, 48).step(1).name("Subdivisions");
 			  	gui.add(window, 'startAgain').name("Start Mapping");

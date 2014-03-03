@@ -36,8 +36,9 @@ void setup() {
   timeY = -PI/8;
 }
 
-void setVisMode(int vmode) {
-  visMode = vmode;
+void changeVisMode() {
+  if (visMode == 0) {visMode = 1;}
+  else {visMode = 0;}
 }
 
 void setCurrentImg(int theimg) {
