@@ -22,4 +22,5 @@ Use the GUI on the right to change settings - drag the slider to switch between 
 
 ## Libraries Used
 - [Processing](http://processing.org/ "Processing")
-
+- [Processing.js](http://processingjs.org/ "Processing.js")
+- [dat-gui](https://code.google.com/p/dat-gui/ "dat-gui")
