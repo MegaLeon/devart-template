@@ -9,7 +9,6 @@
             "Windows"
         ],
         "toolkits": [
-            "OpenGL"
             "ToxicLibs"
         ]
     },
