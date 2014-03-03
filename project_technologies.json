@@ -1,16 +1,16 @@
 {
     "technologies": {
         "apis": [
-            "Google Plus",
-            "Picasa",
-            "Instagram"
+            "google plus",
+            "picasa",
+            "instagram"
         ],
         "platforms": [
-            "Windows"
+            "windows"
         ],
         "toolkits": [
-            "WebGL"
-            "ToxicLibs"
+            "webgl"
+            "toxicLibs"
         ]
     },
     "themes": [
