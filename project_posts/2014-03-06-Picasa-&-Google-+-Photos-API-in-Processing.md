@@ -7,7 +7,7 @@ One of my ideas for user interaction was having them typing something they'd fee
 
 What would happen if we were to search for "art"?
 
-![picasaTest]((/project_images/04-picasaTest.png?raw=true"picasaTest")
+![picasaTest](/project_images/04-picasaTest.png?raw=true"picasaTest")
 
 The results are satisying - on tiop of that I'd like to have the user pick up from his collection of photos as well, making his able to see (maybe get? ;) ) its important moments translated to 3D.
 
