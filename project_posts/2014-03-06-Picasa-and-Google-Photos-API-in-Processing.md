@@ -7,10 +7,12 @@ One of my ideas for user interaction was having them typing something they'd fee
 
 What would happen if we were to search for "art"?
 
-![picasaTest](/project_images/04-picasaTest.png?raw=true"picasaTest")
+![picasaTest](/project_images/04-picasaTest.png?raw=true "picasaTest")
 
 The results are satisfying - on top of that I'd like to have the user pick up from his collection of photos as well, making his able to see (maybe get? ;) ) its important moments translated to 3D.
 
-The Google Photos API in Processing example is available on my Github: https://github.com/MegaLeon/devart-template/tree/master/project_code/testPicasa
+The Google Photos API in Processing example is available on my Github: 
+
+https://github.com/MegaLeon/devart-template/blob/master/project_code/testPicasa/testPicasa.pde
 
 Hopefully this will help people here who are trying to do similar things with Processing. I plan on writing a proper tutorial about this when my life gets a bit more peaceful since it would be a first of its kind in the world wide web.
