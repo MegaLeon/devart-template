@@ -1,6 +1,6 @@
 During the weekend I used Toxiclibs to implement a [metaballs](http://en.wikipedia.org/wiki/Metaballs "metaballs")-like visualization style. Toxiclibs offers many convenient functions related to 3D volumes - in my case I changed the size of a voxel in space based on the frequency of the color to which that voxel is mapped and computing the surface mesh given a threshold value.
 
-![animmeta](http://i.imgur.com/MXQxCn4.gif "animmeta")
+![animmeta](http://i.imgur.com/MvY8Ofk.gif "animmeta")
 
 Implementing vertex coloring and getting nice gradients on the mesh was a bit more of a challenge: again, Toxiclibs, offers some fast functions to draw the resulting mesh, but in my case I wanted to edit the individual vertex colors based on their position in space.
 
