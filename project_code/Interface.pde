@@ -1,23 +1,19 @@
-public void ChangeVisualization(int theValue) {
-  if (visMode < 1) {
-    visMode = 1;
-    count = 48;
-  } 
-  else {
-    visMode = 0;
-    count = 12;
-  }  
-  start();
+//old dat-gui stuff
+void changeVisMode() {
+  if (visMode == 0) {visMode = 1;}
+  else {visMode = 0;}
 }
 
-public void ChangeImage(int theValue) {
-  if (currentImg < 3) {
-    currentImg += 1;
+void setCurrentImg(int theimg) {
+  currentImg = theimg;
+}
+
+void setSubdivisions(int subds) {
+  if (visMode == 0) {
+    count = subds / 2;
   } 
   else {
-    currentImg = 0;
+    count = subds * 2;
   }
-  start();
 }
-
 

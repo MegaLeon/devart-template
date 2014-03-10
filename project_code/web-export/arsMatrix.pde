@@ -1,4 +1,5 @@
-/* @pjs preload="flowers.png, gioconda.png, girasole.png, stars.png, sunday.png, twilight.png"; */
+/* @pjs preload="gioconda.png, stars.png, sunday.png, twilight.png"; 
+ */
 
 import processing.opengl.*;
 
@@ -34,24 +35,6 @@ void setup() {
 
   timeX = -PI/2;
   timeY = -PI/8;
-}
-
-void changeVisMode() {
-  if (visMode == 0) {visMode = 1;}
-  else {visMode = 0;}
-}
-
-void setCurrentImg(int theimg) {
-  currentImg = theimg;
-}
-
-void setSubdivisions(int subds) {
-  if (visMode == 0) {
-    count = subds / 2;
-  } 
-  else {
-    count = subds * 2;
-  }
 }
 
 void startProcess() {
@@ -181,31 +164,57 @@ void readPixels(boolean _animated, int _animSpeed) {
   else isMapping = false;
 }
 
-public void ChangeVisualization(int theValue) {
-  if (visMode < 1) {
-    visMode = 1;
-    count = 48;
-  } 
-  else {
-    visMode = 0;
-    count = 12;
-  }  
-  start();
+void changeVisMode() {
+  if (visMode == 0) {visMode = 1;}
+  else {visMode = 0;}
 }
 
-public void ChangeImage(int theValue) {
-  if (currentImg < 3) {
-    currentImg += 1;
+void setCurrentImg(int theimg) {
+  currentImg = theimg;
+}
+
+void setSubdivisions(int subds) {
+  if (visMode == 0) {
+    count = subds / 2;
   } 
   else {
-    currentImg = 0;
+    count = subds * 2;
   }
-  start();
 }
 
+void readPixelsAnimated(int count, int currentPixelX, int currentPixelY) {
+  color currentCol = 0;
+  float r, g, b;
+  int pxHue = 0;
+  float currentValue = 0;
+
+  currentCol = img.get(currentPixelX, currentPixelY);  
+  r = constrain(red(currentCol), 0, 255);
+  g = constrain(green(currentCol), 0, 255);
+  b = constrain(blue(currentCol), 0, 255);
+  pxHue = int(hue(currentCol));
+  
+  colorMatrixRemap[floor(map(r, 0, 255, 0, count-1))][floor(map(g, 0, 255, 0, count-1))][floor(map(b, 0, 255, 0, count-1))]  += 1;
+  currentValue = colorMatrixRemap[floor(map(r, 0, 255, 0, count-1))][floor(map(g, 0, 255, 0, count-1))][floor(map(b, 0, 255, 0, count-1))];
+  //Sets new max value
+  cubeRgbMax = getMaxValue(cubeRgbMax, currentValue);
+
+  // Hue Pyramid Matrix      
+  colorMatrixHuePyramid[int(map(pxHue, 0, 360, 0, count))] += 1;
+  currentValue = colorMatrixHuePyramid[int(map(pxHue, 0, 360, 0, count))];
+  //Sets new max value
+  hueMax = getMaxValue(hueMax, currentValue);
+}
+
+float getMaxValue( float _oldValue, float _newValue) {
+  if (_newValue > _oldValue) {
+    return _newValue;
+  }
+  else return _oldValue;
+}
 
 // read color values of the image and store them in different arrays
-void readPixelsRemap(int count) {
+/*void readPixelsRemap(int count) {
   color currentCol;
   float r, g, b;
   int buffer = 0;
@@ -244,38 +253,7 @@ void readPixelsRemap(int count) {
       hueVal[pxHue] ++;
     }
   }
-}
-
-void readPixelsAnimated(int count, int currentPixelX, int currentPixelY) {
-  color currentCol = 0;
-  float r, g, b;
-  int pxHue = 0;
-  float currentValue = 0;
-
-  currentCol = img.get(currentPixelX, currentPixelY);  
-  r = constrain(red(currentCol), 0, 255);
-  g = constrain(green(currentCol), 0, 255);
-  b = constrain(blue(currentCol), 0, 255);
-  pxHue = int(hue(currentCol));
-  
-  colorMatrixRemap[floor(map(r, 0, 255, 0, count-1))][floor(map(g, 0, 255, 0, count-1))][floor(map(b, 0, 255, 0, count-1))]  += 1;
-  currentValue = colorMatrixRemap[floor(map(r, 0, 255, 0, count-1))][floor(map(g, 0, 255, 0, count-1))][floor(map(b, 0, 255, 0, count-1))];
-  //Sets new max value
-  cubeRgbMax = getMaxValue(cubeRgbMax, currentValue);
-
-  // Hue Pyramid Matrix      
-  colorMatrixHuePyramid[int(map(pxHue, 0, 360, 0, count))] += 1;
-  currentValue = colorMatrixHuePyramid[int(map(pxHue, 0, 360, 0, count))];
-  //Sets new max value
-  hueMax = getMaxValue(hueMax, currentValue);
-}
-
-float getMaxValue( float _oldValue, float _newValue) {
-  if (_newValue > _oldValue) {
-    return _newValue;
-  }
-  else return _oldValue;
-}
+}*/
 
 void drawPanels(int size) {    
   rectMode(CENTER);
