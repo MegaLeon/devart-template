@@ -30,9 +30,10 @@ float hueMax = 0, cubeRgbMax = 0;
 void setup() {
   frameRate(60);
   //setSubdivisions(24);
-  noSmooth();
+  //noSmooth();
+  smooth(4);
 
-  timeX = PI/3;
+  timeX = -PI/3;
   timeY = -PI/8;
 
   size(1000, 500, OPENGL);
@@ -71,7 +72,7 @@ void draw() {
 
   //timeX += map(mouseX, 0, width, -0.02, 0.02);
   //timeY += map(mouseY, 0, height, -0.01, 0.01);
-  //timeX += 0.01;
+  //timeX -= 0.005;
 
   lights();
 
@@ -108,12 +109,13 @@ void pickImage(int imgNumber) {
   switch(imgNumber) {
   case 0: 
     img = loadImage("gioconda.png");
+    //img = loadImage("armada.png");
     break;  
   case 1: 
     img = loadImage("stars.png"); 
     break;  
   case 2: 
-    img = loadImage("twilight.png"); 
+    img = loadImage("twilight.png");    
     break;  
   case 3: 
     img = loadImage("sunday.png"); 

@@ -66,11 +66,11 @@ void drawMetaballs(int _x, int _y, int _z, int size, int count) {
     fill(map(vertexList[currentVert], -size/2, size/2, 0, 255), map(vertexList[currentVert+1], -size/2, size/2, 0, 255), map(vertexList[currentVert+2], -size/2, size/2, 0, 255));
     vertex( vertexList[currentVert], vertexList[currentVert+1], vertexList[currentVert+2] );
     
-    //map position of the first vertex of the the face to the green color range
+    //map position of the second vertex of the the face to the green color range
     fill(map(vertexList[currentVert+4], -size/2, size/2, 0, 255), map(vertexList[currentVert+5], -size/2, size/2, 0, 255), map(vertexList[currentVert+6], -size/2, size/2, 0, 255));
     vertex( vertexList[currentVert+4], vertexList[currentVert+5], vertexList[currentVert+6] );
     
-    //map position of the first vertex of the the face to the blue color range
+    //map position of the third vertex of the the face to the blue color range
     fill(map(vertexList[currentVert+8], -size/2, size/2, 0, 255), map(vertexList[currentVert+9], -size/2, size/2, 0, 255), map(vertexList[currentVert+10], -size/2, size/2, 0, 255));
     vertex( vertexList[currentVert+8], vertexList[currentVert+9], vertexList[currentVert+10] );
   }
