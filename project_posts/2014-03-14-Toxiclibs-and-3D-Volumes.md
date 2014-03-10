@@ -7,12 +7,12 @@ Implementing vertex coloring and getting nice gradients on the mesh was a bit mo
 I ended up computing the surface mesh, but instead of drawing it I extracted the list of its vertices using the “getMeshAsVertexArray” function. This function stores the vertices with this order:
 ```
 Creates an array of unravelled vertex coordinates for all faces. This method can be used to translate the internal mesh data structure into a format suitable for OpenGL Vertex Buffer Objects (by choosing stride=4). The order of the array will be as follows:
-Face 1:
-Vertex #1
-x
-y
-z
-[optional empty indices to match stride setting]
+*Face 1:
+**Vertex #1
+***x
+***y
+***z
+***[optional empty indices to match stride setting]
 Vertex #2
 x
 y
@@ -51,6 +51,6 @@ for (int currentVert = 0; currentVert < vertexList.length ; currentVert += 12) {
   endShape();
 ```
 
-![metaballs](/project_images/05metaballs.png "metaballs")
+![metaballs](/project_images/05meta.png "metaballs")
 
 I am happy to have "hacked" this effect as the final result looks great and it was my first time playing around with Toxiclibs, even tho I knew of their good reputation in the Processins environment. They are a truly powerful library and I am looking forward to use it more in future projects.
