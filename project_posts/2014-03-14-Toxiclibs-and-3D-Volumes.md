@@ -13,18 +13,18 @@ Creates an array of unravelled vertex coordinates for all faces. This method can
 ***y
 ***z
 ***[optional empty indices to match stride setting]
-Vertex #2
-x
-y
-z
-[optional empty indices to match stride setting]
-Vertex #3
-x
-y
-z
-[optional empty indices to match stride setting]
-Face 2:
-Vertex #1
+**Vertex #2
+***x
+***y
+***z
+***[optional empty indices to match stride setting]
+**Vertex #3
+***x
+***y
+***z
+***[optional empty indices to match stride setting]
+*Face 2:
+**Vertex #1
 ...etc.
 ```
 
