@@ -1,4 +1,4 @@
-During thw weeken I used Toxiclibs to implement a [metaballs](http://en.wikipedia.org/wiki/Metaballs "metaballs")-like visualization style. Toxiclibs offers many convenient functions related to 3D volumes - in my case I changed the size of a voxel in space based on the frequency of the color to which that voxel is mapped and computing the surface mesh given a threshold value.
+During the weekend I used Toxiclibs to implement a [metaballs](http://en.wikipedia.org/wiki/Metaballs "metaballs")-like visualization style. Toxiclibs offers many convenient functions related to 3D volumes - in my case I changed the size of a voxel in space based on the frequency of the color to which that voxel is mapped and computing the surface mesh given a threshold value.
 
 ![animmeta](http://i.imgur.com/MXQxCn4.gif "animmeta")
 
@@ -51,6 +51,6 @@ for (int currentVert = 0; currentVert < vertexList.length ; currentVert += 12) {
   endShape();
 ```
 
-![metaballs]/project_images/05metaballs.png "metaballs")
+![metaballs](/project_images/05metaballs.png "metaballs")
 
 I am happy to have "hacked" this effect as the final result looks great and it was my first time playing around with Toxiclibs, even tho I knew of their good reputation in the Processins environment. They are a truly powerful library and I am looking forward to use it more in future projects.
