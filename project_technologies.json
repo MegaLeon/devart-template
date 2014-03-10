@@ -9,8 +9,8 @@
             "windows"
         ],
         "toolkits": [
-            "webgl"
-            "toxicLibs"
+            "webgl",
+            "toxiclibs"
         ]
     },
     "themes": [
