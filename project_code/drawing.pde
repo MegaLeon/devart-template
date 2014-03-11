@@ -1,42 +1,5 @@
-void drawPanels(int size) {    
-  rectMode(CENTER);
-  stroke(100);
-  noFill();  
-
-  fill(220);
-  pushMatrix();
-  translate(0, size/2, 0);
-  rotateX(PI/2);
-  drawGrid(0, 0, size, 12);
-  rect(0, 0, size, size);
-  popMatrix();
-  noFill();
-
-  pushMatrix();
-  translate(-size/2, 0, 0);
-  rotateY(PI/2);
-  drawGrid(0, 0, size, 12);
-  rect(0, 0, size, size);
-  popMatrix();
-
-  pushMatrix();
-  translate(0, 0, -size/2);
-  rotateZ(PI/2);
-  drawGrid(0, 0, size, 12);
-  rect(0, 0, size, size);
-  popMatrix();
-}
-
-void drawGrid(int _x, int _y, int size, int count) {
-  for (int i = 0; i < count; i++) {
-    for (int j = 0; j < count; j++) {
-      point((_x - size/2) + i * (size/count), (_y - size/2) + j * (size/count));
-    }
-  }
-}
-
 void drawElementsRemap(int _x, int _y, int _z, int size, int count) {
-  float scaleValue = (cubeRgbMax) / (size);
+  //float scaleValue = (cubeRgbMax) / (size);
   float sizeValue;
 
   for (int i = 1; i < count; i++) {
@@ -161,7 +124,7 @@ void drawVertBarsHue(int _x, int _y, int _z, int size, int count) {
 
 void drawHorzBarsHue(int _x, int _y, int _z, int size, int count) {
   float newHue, newSat, newVal = 0;
-  float scaleValue = (hueMax) / (size/1.5);
+  //float scaleValue = (hueMax) / (size/1.5);
   float sizeValue = 0;
 
   for (int i = 1; i < count; i++) {
@@ -184,8 +147,8 @@ void drawHorzBarsHue(int _x, int _y, int _z, int size, int count) {
         noStroke();
 
         // draw a cube if bigger than treshold value
-        //sizeValue = constrain(colorMatrixHSV[i][j][k]/(count / (size/count)), 0, size);
-        sizeValue = map(colorMatrixHSV[i][j][k], 0, hueMax, 0, size);
+        sizeValue = constrain(colorMatrixHSV[i][j][k]/(count / (size/count)), 0, size);
+        //sizeValue = map(colorMatrixHSV[i][j][k], 0, hueMax, 0, size);
         if (sizeValue > 0) {
           box(sizeValue, map(sizeValue, 2, size, size/count, 1), sizeValue);
         }
@@ -195,11 +158,40 @@ void drawHorzBarsHue(int _x, int _y, int _z, int size, int count) {
   }
 }
 
-void drawHueLines(int _x, int _y) {
-  for (int i = 0; i < 360; i++) { 
-    colorMode(HSB, 360, 100, 100);
-    stroke(i, 100, 100);
-    line(_x - i, _y - (360/2), _x - i, _y - (360/2) + hueVal[i]/10);
+void drawPanels(int size) {    
+  rectMode(CENTER);
+  stroke(100);
+  noFill();  
+
+  fill(220);  
+  pushMatrix();
+  translate(0, size/2, 0);
+  rotateX(PI/2);
+  drawGrid(0, 0, size, 12);
+  rect(0, 0, size, size);
+  popMatrix();
+  noFill();
+
+  pushMatrix();
+  translate(-size/2, 0, 0);
+  rotateY(PI/2);
+  drawGrid(0, 0, size, 12);
+  rect(0, 0, size, size);
+  popMatrix();
+
+  pushMatrix();
+  translate(0, 0, -size/2);
+  rotateZ(PI/2);
+  drawGrid(0, 0, size, 12);
+  rect(0, 0, size, size);
+  popMatrix();
+}
+
+void drawGrid(int _x, int _y, int size, int count) {
+  for (int i = 0; i < count; i++) {
+    for (int j = 0; j < count; j++) {
+      point((_x - size/2) + i * (size/count), (_y - size/2) + j * (size/count));
+    }
   }
 }
 
