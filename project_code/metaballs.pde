@@ -57,7 +57,7 @@ void drawMetaballs(int _x, int _y, int _z, int size, int count) {
 
   beginShape(TRIANGLES);
   mesh.computeVertexNormals();
-  colorMode(RGB, 255);
+  colorModeRgb(true);
   // advance by 12 slots in the vertexList array, since it's structured like this:
   // (first face)[vertex1x][vertex1y][vertex1z][vertex1stride][vertex2x]...
   // http://toxiclibs.org/docs/core/toxi/geom/mesh/TriangleMesh.html#getMeshAsVertexArray(float[], int, int)

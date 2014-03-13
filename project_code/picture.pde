@@ -19,12 +19,12 @@ class ImageSrc {
 
     // Scanning Lines
     stroke(255);
-     if (isMapping) {
-     line(-displaySize/2 + map(currentPixelX, 0, img.width, 0, displaySize), -displaySize/2, -displaySize/2 + map(currentPixelX, 0, img.width, 0, displaySize), displaySize/2);
-     line(-displaySize/2, -displaySize/2 + map(currentPixelY, 0, img.height, 0, displaySize), displaySize/2, -displaySize/2 + map(currentPixelY, 0, img.height, 0, displaySize));
-     }
+    if (isMapping) {
+      line(-displaySize/2 + map(currentPixelX, 0, img.width, 0, displaySize), -displaySize/2, -displaySize/2 + map(currentPixelX, 0, img.width, 0, displaySize), displaySize/2);
+      line(-displaySize/2, -displaySize/2 + map(currentPixelY, 0, img.height, 0, displaySize), displaySize/2, -displaySize/2 + map(currentPixelY, 0, img.height, 0, displaySize));
+    }
 
-    fill(255); //ProcessingJS needs this or the image gets tinted red(?).
+    smartFill(255); //ProcessingJS needs this or the image gets tinted red(?).
 
     img.resize(mapSize, mapSize);
     displayImg.resize(displaySize, displaySize);
@@ -32,13 +32,13 @@ class ImageSrc {
     image(displayImg, -displaySize/2, -displaySize/2);
     popMatrix();
   }
-  
+
   void reset() {
     currentPixel = 0;
     currentPixelX = 0;
     currentPixelY = 0;
   }
-  
+
   void setImage(int _imgNumber) {
     pickImage(_imgNumber);
   }
@@ -51,9 +51,9 @@ class ImageSrc {
         isMapping = true;
         for (int i = 0; i < _animSpeed; i++) {
           readPixelsAnimated(subdivisions, currentPixelX, currentPixelY);
-           currentPixel += 1;
-           currentPixelX = currentPixel % img.width;
-           currentPixelY = int(floor(currentPixel / img.height));
+          currentPixel += 1;
+          currentPixelX = currentPixel % img.width;
+          currentPixelY = int(floor(currentPixel / img.height));
           //print("Total: " + currentPixel + ", X: " + currentPixelX + ", Y: " + currentPixelY + "\n");
         }
       }
@@ -73,7 +73,7 @@ class ImageSrc {
 
     else isMapping = false;
   }
-  
+
   public void readPixelsAnimated(int count, int currentPixelX, int currentPixelY) {
     color currentCol = 0;         // Color of the current pixel
     float r, g, b;                //Red, Green, Blue
@@ -82,36 +82,29 @@ class ImageSrc {
 
     currentCol = img.get(currentPixelX, currentPixelY); 
 
-    colorMode(RGB, 255); 
+    colorModeRgb(true);
     r = constrain(red(currentCol), 0, 255);
     g = constrain(green(currentCol), 0, 255);
     b = constrain(blue(currentCol), 0, 255);
-
-    colorMode(HSB, 360, 100, 100);
-    pxHue = int(hue(currentCol));
-    pxSat = int(saturation(currentCol));
-    pxVal = int(brightness(currentCol));
 
     // RGB Array
     colorMatrixRemap[floor(map(r, 0, 255, 0, count-1))][floor(map(g, 0, 255, 0, count-1))][floor(map(b, 0, 255, 0, count-1))]  += 1;
     currentValue = colorMatrixRemap[floor(map(r, 0, 255, 0, count-1))][floor(map(g, 0, 255, 0, count-1))][floor(map(b, 0, 255, 0, count-1))];
     //Sets new max value
-    cubeRgbMax = getMaxValue(cubeRgbMax, currentValue);
+    rgbMax = getMaxValue(rgbMax, currentValue);
 
-    // HUe Array 
-    colorMatrixHuePyramid[int(map(pxHue, 0, 360, 0, count))] += 1;
-    currentValue = colorMatrixHuePyramid[int(map(pxHue, 0, 360, 0, count))];
-    //Sets new max value
-    hueMax = getMaxValue(hueMax, currentValue);
+    colorModeRgb(false);
+    pxHue = int(hue(currentCol));
+    pxSat = int(saturation(currentCol));
+    pxVal = int(brightness(currentCol));
 
     //HSV Array  
     colorMatrixHSV[int(map(pxHue, 0, 360, 0, count-1))][int(map(pxSat, 0, 100, 0, count-1))][int(map(pxVal, 0, 100, 0, count-1))]  += 1;
     currentValue = colorMatrixHSV[int(map(pxHue, 0, 360, 0, count-1))][int(map(pxSat, 0, 100, 0, count-1))][int(map(pxVal, 0, 100, 0, count-1))];
     //Sets new max value
-    hueMax = getMaxValue(cubeRgbMax, currentValue);
+    hueMax = getMaxValue(rgbMax, currentValue);
   }
-  
-  
+
   float getMaxValue( float _oldValue, float _newValue) {
     if (_newValue > _oldValue) {
       return _newValue;
@@ -133,11 +126,15 @@ class ImageSrc {
     case 3: 
       img = loadImage("sunday.png"); 
       break;
-     case 4: 
+    case 4: 
       img = loadImage("armada.png"); 
       break;
     }
     displayImg = img;
+  }
+
+  PImage getPic() {
+    return img;
   }
 }
 

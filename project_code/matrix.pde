@@ -29,30 +29,59 @@ class Matrix {
   void drawStructure(int visualizationMode, int subdivisions) {
     switch(visualizationMode) {
     case 0: 
-      drawElementsRemap(0, 0, 0, dimension, subdivisions);    
-      isColorSpaceRGB = true;  
+      drawCubesRGB(0, 0, 0, dimension, subdivisions);    
       break;
     case 1: 
       drawMetaballs(0, 0, 0, dimension, subdivisions);  
-      isColorSpaceRGB = true;  
       break;
     case 2: 
-      drawCubesHue(0, 0, 0, dimension, subdivisions);  
-      isColorSpaceRGB = false;  
+      drawVertBarsHue(0, 0, 0, dimension, subdivisions);  
       break;
     case 3: 
-      drawVertBarsHue(0, 0, 0, dimension, subdivisions);  
-      isColorSpaceRGB = false;  
-      break;
-    case 4: 
-      //drawHorzBarsHue(0, 0, 0, dimension, subdivisions);  
-      isColorSpaceRGB = false;  
+      drawHorzBarsHue(0, 0, 0, dimension, subdivisions);  
       break;
     }
   }
 
   public void setVisMode(int _visMode) {
     visMode = _visMode;
+  }
+}
+
+void drawPanels(int size) {    
+  rectMode(CENTER);
+  smartStroke(100);
+  noFill();  
+
+  smartFill(220);  
+  pushMatrix();
+  translate(0, size/2, 0);
+  rotateX(PI/2);
+  drawGrid(0, 0, size, 12);
+  rect(0, 0, size, size);
+  popMatrix();
+  noFill();
+
+  pushMatrix();
+  translate(-size/2, 0, 0);
+  rotateY(PI/2);
+  drawGrid(0, 0, size, 12);
+  rect(0, 0, size, size);
+  popMatrix();
+
+  pushMatrix();
+  translate(0, 0, -size/2);
+  rotateZ(PI/2);
+  drawGrid(0, 0, size, 12);
+  rect(0, 0, size, size);
+  popMatrix();
+}
+
+void drawGrid(int _x, int _y, int size, int count) {
+  for (int i = 0; i < count; i++) {
+    for (int j = 0; j < count; j++) {
+      point((_x - size/2) + i * (size/count), (_y - size/2) + j * (size/count));
+    }
   }
 }
 

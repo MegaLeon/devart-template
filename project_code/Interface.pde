@@ -11,29 +11,24 @@ void setupControls() {
   // create change visualization buttons
   cp5.addButton("cubes")
     .setValue(0)
-      .setPosition(width - btnSize - margin, height/2 - (btnSize*3 + margin*3))
+      .setPosition(width - btnSize - margin, height/2 - (btnSize*2 + margin*2))
         .setSize(btnSize, btnSize)
           ; 
   cp5.addButton("blobs")
     .setValue(0)
-      .setPosition(width - btnSize - margin, height/2 - (btnSize*2 + margin*2))
+      .setPosition(width - btnSize - margin, height/2 - (btnSize*1 + margin*1))
         .setSize(btnSize, btnSize)
           ;  
   cp5.addButton("bars")
     .setValue(0)
-      .setPosition(width - btnSize - margin, height/2 - (btnSize*1 + margin*1))
+      .setPosition(width - btnSize - margin, height/2)
         .setSize(btnSize, btnSize)
           ;  
   cp5.addButton("steps")
     .setValue(0)
-      .setPosition(width - btnSize - margin, height/2)
-        .setSize(btnSize, btnSize)
-          ;  
-  cp5.addButton("plane")
-    .setValue(0)
       .setPosition(width - btnSize - margin, height/2 + (btnSize*1 + margin*1))
         .setSize(btnSize, btnSize)
-          ;
+          ;  
 
   cp5.addButton("changePic")
     .setValue(0)
@@ -45,26 +40,22 @@ void setupControls() {
 public void cubes() {
   subdivisions = 12;
   initialize();
-  picture.reset();
   matrix.setVisMode(0);
 } 
 public void blobs() { 
   subdivisions = 24;
   initialize();
-  picture.reset();
   matrix.setVisMode(1);
 } 
 public void bars() { 
   subdivisions = 12;
   initialize();
-  picture.reset();
-  matrix.setVisMode(3);
+  matrix.setVisMode(2);
 } 
 public void steps() { 
   subdivisions = 24;
   initialize();
-  picture.reset();
-  matrix.setVisMode(4);
+  matrix.setVisMode(3);
 }
 
 public void changePic() {
@@ -73,7 +64,6 @@ public void changePic() {
 
   picture.pickImage(currentImg);
   initialize();
-  picture.reset();
 }
 
 

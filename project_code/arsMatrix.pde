@@ -1,19 +1,18 @@
-/* @pjs preload="gioconda.png, stars.png, sunday.png, twilight.png"; 
- */
+/* @pjs preload="gioconda.png, stars.png, sunday.png, twilight.png"; */
 
 import processing.opengl.*;
 
 int[][][] colorMatrixRemap;
 int[][][] colorMatrixHSV;
-int[] colorMatrixHuePyramid;
-int[] hueVal;
 
 int subdivisions = 12;
-int mappingSpeed = 128;                // pixel analysed per second during the animated analysis
+int mappingSpeed = 1024; // pixel analysed per second during the animated analysis
+
+boolean isAnimated = true;
 boolean isMapping = true;
 boolean isColorSpaceRGB = true;
 
-float hueMax = 0, cubeRgbMax = 0;
+float hueMax = 0, rgbMax = 0;
 
 Matrix matrix;
 ImageSrc picture;
@@ -34,12 +33,10 @@ void setup() {
 void initialize() { 
   colorMatrixRemap = new int[subdivisions][subdivisions][subdivisions];
   colorMatrixHSV = new int[subdivisions][subdivisions][subdivisions];
-  colorMatrixHuePyramid = new int[subdivisions];
-  hueVal = new int[360];
 
   picture.reset();
 
-  cubeRgbMax = 0;
+  rgbMax = 0;
   hueMax = 0;
 }
 
@@ -51,26 +48,21 @@ void draw() {
     background(230);
   } 
 
-  picture.readPixels(true, mappingSpeed);
-
-  //timeX += map(mouseX, 0, width, -0.02, 0.02);
-  //timeY += map(mouseY, 0, height, -0.01, 0.01);
-  //timeX -= 0.005;
+  picture.readPixels(isAnimated, mappingSpeed);
 
   lights();
+  shininess(5.0); 
+  //ambientLight(153, 102, 0);
 
-  // Image
   picture.display();
-
-  // 3D
-   matrix.display();
+  matrix.display();
 }
 
 void keyPressed() {
   if (key == 's') {
-    // Saves the image when "S" is pressed
     save("normal.png");
   }
+  
   if (key == CODED) {
     switch (keyCode) {
 
@@ -84,9 +76,8 @@ void keyPressed() {
       break;
 
     case UP:
-      /*if (currentImg < 4) currentImg++; 
-       else currentImg = 0;
-       initialize();*/
+      picture.getPic().filter(BLUR, 1);
+      initialize();
       break;
 
     case DOWN:
@@ -97,4 +88,5 @@ void keyPressed() {
     }
   }
 }
+
 
