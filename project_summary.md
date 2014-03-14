@@ -25,6 +25,5 @@ An early javascript test as the visualization techniques were coming into form. 
 - [Toxiclibs](http://toxiclibs.org/ "Toxiclibs")
 - [ControlP5](http://www.sojamo.de/libraries/controlP5/ "ControlP5")
 - [Picasa APIs](https://developers.google.com/picasa-web/ "Picasa APIs")
-
 - [Processing.js](http://processingjs.org/ "Processing.js")
 - [dat-gui](https://code.google.com/p/dat-gui/ "dat-gui")
