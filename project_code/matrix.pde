@@ -1,14 +1,15 @@
 class Matrix {
   float xPos, yPos;
+  float xRot, yRot;
+  float xRotBuffer, yRotBuffer = 0;
   int dimension;
-  int visMode = 0;  
-
-  float timeX = -PI/3;
-  float timeY = -PI/8;
+  int visMode = 0;
 
   Matrix(float _xPos, float _yPos, int _dimension, int _visMode) {
     xPos = _xPos;
     yPos = _yPos;
+    xRot = -PI/8;
+    yRot = -PI/3;
     dimension = _dimension;
     visMode = _visMode;
     initMetaballs(dimension, subdivisions);
@@ -18,8 +19,7 @@ class Matrix {
     pushMatrix();
     translate(xPos, yPos);
 
-    rotateX(timeY);
-    rotateY(timeX);
+    updateRotation();
 
     drawPanels(dimension);
     drawStructure(visMode, subdivisions);
@@ -45,6 +45,24 @@ class Matrix {
 
   public void setVisMode(int _visMode) {
     visMode = _visMode;
+  }
+
+  void rotateMatrix(float _xRot, float _yRot) {
+    xRotBuffer = _xRot;
+    yRotBuffer = _yRot;
+  }
+
+  void updateRotation() {
+    if (xRotBuffer !=0) {
+      yRot -= xRotBuffer;
+      xRotBuffer = xRotBuffer/1.1;
+    }
+    if (yRotBuffer !=0) {
+      xRot += yRotBuffer;
+      yRotBuffer = yRotBuffer/1.1;
+    }
+    rotateX(xRot);
+    rotateY(yRot);
   }
 }
 

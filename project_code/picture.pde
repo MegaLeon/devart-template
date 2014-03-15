@@ -12,25 +12,19 @@ class ImageSrc {
     mapSize = _mapSize;
   }
 
-  void display() {
-    pushMatrix();
-    //translate(width/2 - width/4, height/2, 0);
-    translate(xPos, yPos, 0);
-
-    // Scanning Lines
-    stroke(255);
-    if (isMapping) {
-      line(-displaySize/2 + map(currentPixelX, 0, img.width, 0, displaySize), -displaySize/2, -displaySize/2 + map(currentPixelX, 0, img.width, 0, displaySize), displaySize/2);
-      line(-displaySize/2, -displaySize/2 + map(currentPixelY, 0, img.height, 0, displaySize), displaySize/2, -displaySize/2 + map(currentPixelY, 0, img.height, 0, displaySize));
-    }
-
-    smartFill(255); //ProcessingJS needs this or the image gets tinted red(?).
-
+  void display() {    
+    smartFill(255); //needs this or the image gets tinted red(?).
+    imageMode(CENTER);
     img.resize(mapSize, mapSize);
-    displayImg.resize(displaySize, displaySize);
-
-    image(displayImg, -displaySize/2, -displaySize/2);
-    popMatrix();
+    image(displayImg, xPos, yPos, displaySize, displaySize);
+    visualizeScanning();
+  }
+  
+  void displayLoadingRect() {
+  smartFill(120);
+  rect(xPos, yPos, displaySize, displaySize);
+  textAlign(CENTER, CENTER);
+  text("loading...", xPos, yPos);
   }
 
   void reset() {
@@ -41,6 +35,17 @@ class ImageSrc {
 
   void setImage(int _imgNumber) {
     pickImage(_imgNumber);
+  }
+
+  void visualizeScanning() {
+    pushMatrix();
+    translate(xPos, yPos);
+    stroke(255);
+    if (isMapping) {
+      line(-displaySize/2 + map(currentPixelX, 0, mapSize, 0, displaySize), -displaySize/2, -displaySize/2 + map(currentPixelX, 0, mapSize, 0, displaySize), displaySize/2);
+      line(-displaySize/2, -displaySize/2 + map(currentPixelY, 0, mapSize, 0, displaySize), displaySize/2, -displaySize/2 + map(currentPixelY, 0, mapSize, 0, displaySize));
+    }
+    popMatrix();
   }
 
   void readPixels(boolean _animated, int _animSpeed) {
@@ -115,7 +120,7 @@ class ImageSrc {
   void pickImage(int imgNumber) {
     switch(imgNumber) {
     case 0: 
-      img = loadImage("gioconda.png");
+      img = loadImage("napoleon.png");
       break;  
     case 1: 
       img = loadImage("stars.png"); 
@@ -130,6 +135,11 @@ class ImageSrc {
       img = loadImage("armada.png"); 
       break;
     }
+    displayImg = img;
+  }
+  
+  void pickPicasaImage(String _searchWord) {
+    img = requestImage(getRandomPicasaUrl(_searchWord));
     displayImg = img;
   }
 

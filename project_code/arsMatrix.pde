@@ -2,17 +2,16 @@
 
 import processing.opengl.*;
 
+boolean isAnimated = true;      // animate the mapping process or not
+int subdivisions = 12;           //
+int mappingSpeed = 2048;          // pixel analysed per second during the animated analysis
+String searchWord = "landscape"; // word to search the picasa public feed with, when it's not loading the featured images
+
 int[][][] colorMatrixRemap;
 int[][][] colorMatrixHSV;
-
-int subdivisions = 12;
-int mappingSpeed = 1024; // pixel analysed per second during the animated analysis
-
-boolean isAnimated = true;
-boolean isMapping = true;
-boolean isColorSpaceRGB = true;
-
-float hueMax = 0, rgbMax = 0;
+boolean isMapping;
+boolean isColorSpaceRGB;
+float hueMax, rgbMax = 0;
 
 Matrix matrix;
 ImageSrc picture;
@@ -48,13 +47,17 @@ void draw() {
     background(230);
   } 
 
-  picture.readPixels(isAnimated, mappingSpeed);
-
   lights();
   shininess(5.0); 
   //ambientLight(153, 102, 0);
 
-  picture.display();
+  if (picture.getPic().width > 0) {
+    picture.readPixels(isAnimated, mappingSpeed);
+    picture.display();
+  } else {
+    picture.displayLoadingRect();
+  }
+
   matrix.display();
 }
 
@@ -62,31 +65,33 @@ void keyPressed() {
   if (key == 's') {
     save("normal.png");
   }
-  
+
   if (key == CODED) {
     switch (keyCode) {
 
-      // Rotate Camera
+
     case LEFT: 
-      //timeX -= 0.1; 
       break;
 
     case RIGHT: 
-      //timeX += 0.1; 
       break;
 
     case UP:
-      picture.getPic().filter(BLUR, 1);
-      initialize();
       break;
 
     case DOWN:
-      /*if (visMode < 5) visMode++; 
-       else visMode = 0;
-       initialize();
-       break;*/
+      break;
     }
   }
 }
 
+// Rotate Camera
+void mouseDragged() 
+{
+  if (mouseX > width/2) {
+    float speedX = mouseX- pmouseX;
+    float speedY = mouseY - pmouseY;
+    matrix.rotateMatrix(speedX/300, speedY/300);
+  }
+}
 

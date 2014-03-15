@@ -62,11 +62,10 @@ public void changePic() {
   if (currentImg < 4) currentImg++; 
   else currentImg = 0;
 
-  picture.pickImage(currentImg);
+  //picture.pickImage(currentImg);
+  picture.pickPicasaImage(searchWord);
   initialize();
 }
-
-
 
 
 //************************************************************************************
