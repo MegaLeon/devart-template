@@ -1,6 +1,6 @@
 I got back to the Picasa API test I published a few post ago, and integrated that system in ArsMatrix, featuring customizable search words - here we can see a few nice results:
 
-![searchpicasa](http://i.imgur.com/bTKDNzp.png "searchpicasa")
+![searchpicasa](http://i.imgur.com/K7JcGQ4.png "searchpicasa")
 
 The system had to change a bit to be optimized: originally a query to the Picasa public feed was made each time the user wanted to get a new image. That caused a small hangup while the APIs filled out the request with all the images (I haven’t set any maximum number of results limit to ensure a greater diversification when picking randomly from the results). I was able to fix this by loading the APIs just once, and filling an array with the URLs of the images:
 ```
