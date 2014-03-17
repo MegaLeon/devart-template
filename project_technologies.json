@@ -5,7 +5,7 @@
             "picasa",
         ],
         "platforms": [
-            "windows"
+            "windows",
             "android"
         ],
         "toolkits": [
