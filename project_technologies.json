@@ -3,10 +3,10 @@
         "apis": [
             "google plus",
             "picasa",
-            "instagram"
         ],
         "platforms": [
             "windows"
+            "android"
         ],
         "toolkits": [
             "webgl",
@@ -15,6 +15,7 @@
     },
     "themes": [
         "Art",
+        "Colors",
         "Visualization",
         "3D"
     ]
