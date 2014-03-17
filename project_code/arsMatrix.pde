@@ -2,10 +2,10 @@
 
 import processing.opengl.*;
 
-boolean isAnimated = true;      // animate the mapping process or not
+boolean isAnimated = false;      // animate the mapping process or not
 int subdivisions = 12;           //
 int mappingSpeed = 2048;          // pixel analysed per second during the animated analysis
-String searchWord = "landscape"; // word to search the picasa public feed with, when it's not loading the featured images
+String searchWord = "picasso"; // word to search the picasa public feed with, when it's not loading the featured images
 
 int[][][] colorMatrixRemap;
 int[][][] colorMatrixHSV;
@@ -25,14 +25,17 @@ void setup() {
   matrix = new Matrix(width/2 + width/4 - 32, height/2, 240, 0);
   picture = new ImageSrc(width/2 - width/4, height/2, 0, 240, 240);
 
-  initialize();
+  fillArrayPicasaUrls(true, searchWord);
   setupControls();
+  
+  initialize(true);
 }
 
-void initialize() { 
+void initialize(boolean _isAnimated) { 
   colorMatrixRemap = new int[subdivisions][subdivisions][subdivisions];
   colorMatrixHSV = new int[subdivisions][subdivisions][subdivisions];
-
+  
+  isAnimated = _isAnimated;
   picture.reset();
 
   rgbMax = 0;
@@ -54,7 +57,8 @@ void draw() {
   if (picture.getPic().width > 0) {
     picture.readPixels(isAnimated, mappingSpeed);
     picture.display();
-  } else {
+  } 
+  else {
     picture.displayLoadingRect();
   }
 

@@ -72,6 +72,7 @@ void drawPanels(int size) {
   noFill();  
 
   smartFill(220);  
+  //smartFillAlpha(0, 20);
   pushMatrix();
   translate(0, size/2, 0);
   rotateX(PI/2);

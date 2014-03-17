@@ -1,7 +1,11 @@
 class ImageSrc {
   float xPos, yPos;
   int displaySize, mapSize;
-  PImage img, displayImg;
+  PImage img, originalImg, displayImg, bufferImg;
+  // originalImg:   original, untouched image used as a base for color modifications
+  // img:           image used for mapping
+  // displayImg:    image displayed to the user
+  // bufferImg:     empty image used as a buffer when doing color modifications
   int currentPixelX = 0, currentPixelY = 0, currentPixel = 0;
 
   ImageSrc(float _xPos, float _yPos, int _imgNumber, int _displaySize, int _mapSize) {
@@ -16,15 +20,22 @@ class ImageSrc {
     smartFill(255); //needs this or the image gets tinted red(?).
     imageMode(CENTER);
     img.resize(mapSize, mapSize);
+    originalImg.resize(mapSize, mapSize);
     image(displayImg, xPos, yPos, displaySize, displaySize);
+
     visualizeScanning();
+
+    //debug mode: displays all the images
+    /*image(displayImg, xPos - displaySize/4, yPos - displaySize/4, displaySize/2, displaySize/2);
+    image(img, xPos + displaySize/4, yPos - displaySize/4, displaySize/2, displaySize/2);
+    image(originalImg, xPos - displaySize/4, yPos + displaySize/4, displaySize/2, displaySize/2);*/
   }
-  
+
   void displayLoadingRect() {
-  smartFill(120);
-  rect(xPos, yPos, displaySize, displaySize);
-  textAlign(CENTER, CENTER);
-  text("loading...", xPos, yPos);
+    smartFill(120);
+    rect(xPos, yPos, displaySize, displaySize);
+    textAlign(CENTER, CENTER);
+    text("loading...", xPos, yPos);
   }
 
   void reset() {
@@ -35,6 +46,64 @@ class ImageSrc {
 
   void setImage(int _imgNumber) {
     pickImage(_imgNumber);
+  }
+  
+  void colorCorrection(float cont, float bright, float hue, float sat)
+  {
+    // store previous colorspace
+    boolean previousColorSpace = getCurrentColorSpace();
+    // temporarily switch to RGB to execute the color operations
+    int w = originalImg.width;
+    int h = originalImg.height;
+    bufferImg = new PImage(w, h);  
+
+    originalImg.loadPixels();
+    bufferImg.loadPixels();
+
+    for (int i = 0; i < w*h; i++)
+    {    
+      colorModeRgb(true);   
+      color inColor = originalImg.pixels[i];      
+      // bitshift operations to get the colors, faster than method alternatives
+      int r = (inColor >> 16) & 0xFF;
+      int g = (inColor >> 8) & 0xFF;
+      int b = inColor & 0xFF;     
+
+      //apply contrast (multiplcation) and brightness (addition)
+      r = (int)(r * cont + bright);
+      g = (int)(g * cont + bright);
+      b = (int)(b * cont + bright);
+
+      //slow but absolutely essential - check that we don't overflow (i.e. r,g and b must be in the range of 0 to 255)
+      r = r < 0 ? 0 : r > 255 ? 255 : r;
+      g = g < 0 ? 0 : g > 255 ? 255 : g;
+      b = b < 0 ? 0 : b > 255 ? 255 : b;
+
+      // bitshift operations to set the colors, faster than method alternatives
+      color newColor = 0xff000000 | (r << 16) | (g << 8) | b;
+      
+      colorModeRgb(false); 
+      float hu = hue(newColor);
+      float sa = saturation(newColor);
+      float va = brightness(newColor);
+
+      //apply hue and saturation
+      hu = (int)(hu + hue) % 360;
+      sa = (int)(sa + sat);
+
+      // bitshift operations to set the colors, faster than method alternatives
+      bufferImg.pixels[i] = color(hu, sa, va);
+    }
+
+    originalImg.updatePixels();
+    bufferImg.updatePixels();
+
+    // switch back to the previous colorspace once done
+    restorePreviousColorSpace(previousColorSpace);
+
+    // update all the images
+    img = bufferImg;
+    displayImg = img;
   }
 
   void visualizeScanning() {
@@ -136,15 +205,21 @@ class ImageSrc {
       break;
     }
     displayImg = img;
+    originalImg = img;
   }
-  
-  void pickPicasaImage(String _searchWord) {
-    img = requestImage(getRandomPicasaUrl(_searchWord));
+
+  void pickPicasaImage() {
+    img = requestImage(getRandomPicasaUrl());
+    originalImg = img;
     displayImg = img;
   }
 
   PImage getPic() {
     return img;
+  }
+
+  PImage getOriginalPic() {
+    return originalImg;
   }
 }
 
