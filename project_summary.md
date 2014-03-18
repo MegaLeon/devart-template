@@ -15,7 +15,7 @@ The animated process and will show the 3D piece growing as the image is being sc
 I am planning to include a few popularing painting within the application, but I want to implement Goggle+, Instgrams and other APIs in order to make the user choose a picture of his own, or to take a picture through a webcam.
 
 ## Link to Prototypes
-- [ArsMatrix JS](http://arsmatrix.neocities.org/ "Prototype 01 | JS Applet")
+- [ArsMatrix JS](http://arsmatrix.neocities.org/jstest.html "Prototype 01 | JS Applet")
 
 An early javascript test as the visualization techniques were coming into form. Use the GUI on the right to change settings and drag the slider to switch between different paintings, click "Start Mapping" to restart the process.
 
