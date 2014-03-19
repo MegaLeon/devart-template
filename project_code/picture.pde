@@ -27,8 +27,8 @@ class ImageSrc {
 
     //debug mode: displays all the images
     /*image(displayImg, xPos - displaySize/4, yPos - displaySize/4, displaySize/2, displaySize/2);
-    image(img, xPos + displaySize/4, yPos - displaySize/4, displaySize/2, displaySize/2);
-    image(originalImg, xPos - displaySize/4, yPos + displaySize/4, displaySize/2, displaySize/2);*/
+     image(img, xPos + displaySize/4, yPos - displaySize/4, displaySize/2, displaySize/2);
+     image(originalImg, xPos - displaySize/4, yPos + displaySize/4, displaySize/2, displaySize/2);*/
   }
 
   void displayLoadingRect() {
@@ -47,7 +47,7 @@ class ImageSrc {
   void setImage(int _imgNumber) {
     pickImage(_imgNumber);
   }
-  
+
   void colorCorrection(float cont, float bright, float hue, float sat)
   {
     // store previous colorspace
@@ -81,7 +81,7 @@ class ImageSrc {
 
       // bitshift operations to set the colors, faster than method alternatives
       color newColor = 0xff000000 | (r << 16) | (g << 8) | b;
-      
+
       colorModeRgb(false); 
       float hu = hue(newColor);
       float sa = saturation(newColor);
@@ -109,10 +109,12 @@ class ImageSrc {
   void visualizeScanning() {
     pushMatrix();
     translate(xPos, yPos);
-    stroke(255);
+    smartStroke(255);
+    noFill();
     if (isMapping) {
       line(-displaySize/2 + map(currentPixelX, 0, mapSize, 0, displaySize), -displaySize/2, -displaySize/2 + map(currentPixelX, 0, mapSize, 0, displaySize), displaySize/2);
       line(-displaySize/2, -displaySize/2 + map(currentPixelY, 0, mapSize, 0, displaySize), displaySize/2, -displaySize/2 + map(currentPixelY, 0, mapSize, 0, displaySize));
+      ellipse(-displaySize/2 + map(currentPixelX, 0, mapSize, 0, displaySize), -displaySize/2 + map(currentPixelY, 0, mapSize, 0, displaySize), 16, 16);
     }
     popMatrix();
   }
@@ -179,6 +181,22 @@ class ImageSrc {
     hueMax = getMaxValue(rgbMax, currentValue);
   }
 
+  void readSinglePixel( int count, int pxX, int pxY) {
+    color col = img.get(pxX, pxY);  
+
+    float pxR = constrain(red(col), 0, 255);
+    float pxG = constrain(green(col), 0, 255);  
+    float pxB = constrain(blue(col), 0, 255);  
+
+    int posX = floor(map(pxR, 0, 255, 0, count-1));
+    int posY = floor(map(pxG, 0, 255, 0, count-1));
+    int posZ = floor(map(pxB, 0, 255, 0, count-1));
+
+    singlePointRGB = new PVector(posX, posY, posZ);
+
+    println(singlePointRGB);
+  }
+
   float getMaxValue( float _oldValue, float _newValue) {
     if (_newValue > _oldValue) {
       return _newValue;
@@ -214,12 +232,32 @@ class ImageSrc {
     displayImg = img;
   }
 
+  boolean isInsidePicture(int coordX, int coordY) {
+    int testX = int(xPos - displaySize/2);
+    int testY = int(yPos - displaySize/2);
+    if ( coordX >= testX  &&  coordX <= testX+displaySize &&
+      coordY >=yPos  &&  coordY <= yPos+displaySize) {
+      return true;
+    }
+    else return false;
+  }
+  
+  void setImage(PImage _img) {
+    img = _img;
+    displayImg = img;
+    originalImg = img;
+  }
+
   PImage getPic() {
     return img;
   }
 
   PImage getOriginalPic() {
     return originalImg;
+  }
+
+  PVector getPos() {
+    return new PVector(xPos, yPos);
   }
 }
 

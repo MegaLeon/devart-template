@@ -6,10 +6,10 @@ import toxi.processing.*;
 
 import processing.opengl.*;
 
-float ISO_THRESHOLD = 0.1;
-float NS = 0.03;
-Vec3D SCALE=new Vec3D(1, 1, 1).scaleSelf(300);
-float subd = 0.1;
+float ISO_THRESHOLD = 0.05 * (matSize/240);
+float NS = 0.03 * (matSize/240);
+Vec3D SCALE = new Vec3D(1, 1, 1).scaleSelf(300 * (matSize/240));
+float subd = 0.1 / (matSize/240);
 
 IsoSurface surface;
 TriangleMesh mesh;

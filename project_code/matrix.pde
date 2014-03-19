@@ -23,6 +23,7 @@ class Matrix {
 
     drawPanels(dimension);
     drawStructure(visMode, subdivisions);
+    if (isMappingSingle) drawSinglePixelRGB(0, 0, 0, dimension, subdivisions);
     popMatrix();
   }
 

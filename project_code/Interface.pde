@@ -1,8 +1,8 @@
 import controlP5.*;
 ControlP5 cp5;
-int btnSize = 48;
-int margin = 8;
-int bigMargin = 16;
+int btnSize;
+int margin;
+int bigMargin;
 int currentImg = 0;
 
 float contrast, brightness, kHue, kSaturation;
@@ -13,7 +13,11 @@ Knob knobHue, knobSat, knobCont, knobBrigh;
 void setupControls() {
   cp5 = new ControlP5(this);
 
-  // create change visualization buttons
+  btnSize = 48 * guiScale;
+  margin = 8 * guiScale;
+  bigMargin = 16 * guiScale;
+
+  // matrix controllers
   cp5.addButton("cubes")
     .setValue(0)
       .setPosition(width - btnSize - margin, height/2 - (btnSize*2 + margin*2))
@@ -33,73 +37,94 @@ void setupControls() {
     .setValue(0)
       .setPosition(width - btnSize - margin, height/2 + (btnSize*1 + margin*1))
         .setSize(btnSize, btnSize)
-          ;  
+          ; 
 
-  knobCont = cp5.addKnob("knobContrast")
-    .setLabel("Contrast")
-      .setColorLabel(color(120))
-        .setRange(0, 5)
-          .setValue(1)
-            .setPosition(margin, height/2 - (btnSize*2 + bigMargin*2))
-              .setRadius(btnSize/2)
-                .setDragDirection(Knob.VERTICAL)
-                  ;
+  // image manipulation controllers
+  if (!isLiveMode) {
 
-  knobBrigh = cp5.addKnob("knobBrightness")
-    .setLabel("Brightness")
-      .setColorLabel(color(120))
-        .setRange(-128, 128)
-          .setValue(0)
-            .setPosition(margin, height/2 - (btnSize + bigMargin))
-              .setRadius(btnSize/2)
-                .setDragDirection(Knob.VERTICAL)
-                  ;
+    knobCont = cp5.addKnob("knobContrast")
+      .setLabel("Contrast")
+        .setColorLabel(color(120))
+          .setRange(0, 5)
+            .setValue(1)
+              .setPosition(margin, height/2 - (btnSize*2 + bigMargin*2))
+                .setRadius(btnSize/2)
+                  .setDragDirection(Knob.VERTICAL)
+                    ;
 
-  knobHue = cp5.addKnob("knobChangeHue")
-    .setLabel("Hue")
-      .setColorLabel(color(120))
-        .setRange(0, 360)
-          .setValue(0)
-            .setPosition(margin, height/2)
-              .setRadius(btnSize/2)
-                .setDragDirection(Knob.VERTICAL)
-                  ;
+    knobBrigh = cp5.addKnob("knobBrightness")
+      .setLabel("Brightness")
+        .setColorLabel(color(120))
+          .setRange(-128, 128)
+            .setValue(0)
+              .setPosition(margin, height/2 - (btnSize + bigMargin))
+                .setRadius(btnSize/2)
+                  .setDragDirection(Knob.VERTICAL)
+                    ;
 
-  knobSat = cp5.addKnob("knobChangeSat")
-    .setLabel("Saturation")
-      .setColorLabel(color(120))
-        .setRange(-50, 50)
-          .setValue(0)
-            .setPosition(margin, height/2 + (btnSize + bigMargin))
-              .setRadius(btnSize/2)
-                .setDragDirection(Knob.VERTICAL)
-                  ;
+    knobHue = cp5.addKnob("knobChangeHue")
+      .setLabel("Hue")
+        .setColorLabel(color(120))
+          .setRange(0, 360)
+            .setValue(0)
+              .setPosition(margin, height/2)
+                .setRadius(btnSize/2)
+                  .setDragDirection(Knob.VERTICAL)
+                    ;
+
+    knobSat = cp5.addKnob("knobChangeSat")
+      .setLabel("Saturation")
+        .setColorLabel(color(120))
+          .setRange(-50, 50)
+            .setValue(0)
+              .setPosition(margin, height/2 + (btnSize + bigMargin))
+                .setRadius(btnSize/2)
+                  .setDragDirection(Knob.VERTICAL)
+                    ;
 
 
-  /*cp5.addButton(searchWord)
-   .setValue(0)
-   .setPosition(margin, margin)
-   .setSize(btnSize*4, btnSize/2)
-   ;
-   
-   cp5.addCheckBox("checkBox")
-   .setPosition(btnSize*4 + margin + btnSize/2, margin)
-   .setColorForeground(color(120))
-   .setColorActive(color(255))
-   .setColorLabel(color(120))
-   .setSize(btnSize/2, btnSize/2)
-   .setItemsPerRow(1)
-   .setSpacingRow(20)
-   .addItem("get featured images only", 0)
-   ;*/
+    cp5.addTextfield("TxtSearchWord")
+      .setLabel("")
+        .setPosition(width/2  - width/4 - picDisplaySize/2, height/2 - picDisplaySize/2 - margin - btnSize/2)
+          .setSize(picDisplaySize/2 - margin, btnSize/2)
+            .setFocus(true)
+              ;
 
-  cp5.addButton("changePic")
-    .setValue(0)
-      .setPosition(width/2  - width/4 - btnSize*2, height/2 + 120 + margin)
-        .setSize(btnSize*4, btnSize/2)
-          ;
+    cp5.addButton("btnSearchWord")
+      .setLabel("Set Image Word Search")
+        .setValue(0)
+          .setPosition(width/2  - width/4 + margin, height/2 - picDisplaySize/2 - margin - btnSize/2)
+            .setSize(picDisplaySize/2 - margin, btnSize/2)
+              ;
+
+    cp5.addSlider("mappingSpeed")
+      .setLabel("Map\nspeed")
+        .setColorLabel(color(120))
+          .setPosition(width/2  - width/4 + picDisplaySize/2 + margin, height/2 - picDisplaySize/2)
+            .setSize(btnSize/4, picDisplaySize)
+              .setRange(16, 512)
+                .setValue(2048)
+                  .setNumberOfTickMarks(32)
+                    .setColorValueLabel(20) 
+                      ;
+
+    cp5.addButton("changePic")
+      .setLabel("Get new picture")
+        .setValue(0)
+          .setPosition(width/2  - width/4 + picDisplaySize/2 - btnSize*3, height/2 + picDisplaySize/2 + margin)
+            .setSize(btnSize*3, btnSize/2)
+              ;
+
+    cp5.addButton("resetKnobs")
+      .setLabel("Reset")
+        .setValue(0)
+          .setPosition(width/2  - width/4 - picDisplaySize/2, height/2 + picDisplaySize/2 + margin)
+            .setSize(btnSize, btnSize/2)
+              ;
+  }
 }
 
+// controllers methods
 public void cubes() {
   subdivisions = 12;
   initialize(true);
@@ -149,6 +174,20 @@ public void knobChangeSat(float theValue) {
 void resetKnobs() {
   knobCont.setValue(1);  
   knobBrigh.setValue(0);
+  knobHue.setValue(0);
+  knobSat.setValue(0);
+}
+
+public void btnSearchWord() {
+  String searchWord = cp5.get(Textfield.class, "TxtSearchWord").getText();
+  println(searchWord);
+  if (searchWord.length() == 0) {
+    fillArrayPicasaUrls(true, "Getting Featured Images");
+  } 
+  else {
+    fillArrayPicasaUrls(false, searchWord);
+  }
+  changePic()
 }
 
 public void changePic() {

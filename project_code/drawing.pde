@@ -1,5 +1,5 @@
 void drawCubesRGB(int _x, int _y, int _z, int size, int count) {
-  float scaleValue = (rgbMax) / (size);
+  //float scaleValue = (rgbMax) / (size);
   float sizeValue;
 
   for (int i = 1; i < count; i++) {
@@ -8,7 +8,7 @@ void drawCubesRGB(int _x, int _y, int _z, int size, int count) {
         pushMatrix();
 
         // move to center of each "slot"
-        translate((_x - size/2) + i * (size/count), (_y - size/2) + j * (size/count), (_z - size/2) + k* (size/count));
+        translate((_x - size/2) + i * (size/count), (_y - size/2) + j * (size/count), (_z - size/2) + k * (size/count));
 
         // get the color by mapping the current slot against the color array
         colorModeRgb(true);
@@ -101,5 +101,23 @@ void drawHorzBarsHue(int _x, int _y, int _z, int size, int count) {
       }
     }
   }
+}
+
+void drawSinglePixelRGB(int _x, int _y, int _z, int size, int count) {
+  pushMatrix();
+  //translate((_x - size/2) + singlePointRGB.x * (size/count), (_y - size/2) + singlePointRGB.y * (size/count), (_z - size/2) + singlePointRGB.z * (size/count));
+  translate((_x - size/2), (_y - size/2), (_z - size/2) + singlePointRGB.z);
+  //smartFill(255);
+  smartStroke(255);
+  //box(24);
+
+  float lnX = singlePointRGB.x * (size/count);
+  float lnY = singlePointRGB.y * (size/count);
+  float lnZ = singlePointRGB.z * (size/count);
+
+  line(0, lnY, lnZ, size, lnY, lnZ);
+  line(lnX, 0, lnZ, lnX, size, lnZ);
+  line(lnX, lnY, 0, lnX, lnY, size);
+  popMatrix();
 }
 
