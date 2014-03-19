@@ -2,10 +2,10 @@
     "technologies": {
         "apis": [
             "google plus",
-            "picasa",
+            "picasa"
         ],
         "platforms": [
-            "windows"
+            "windows",
             "android"
         ],
         "toolkits": [
