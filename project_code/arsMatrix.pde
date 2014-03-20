@@ -10,6 +10,7 @@ boolean isLiveMode = false;
 boolean isAnimated = false;      // animate the mapping process or not
 int mappingSpeed = 2048;         // pixel analysed per second during the animated analysis
 int subdivisions = 12;
+float scaleBias = 1;
 
 String searchWord = "picasso";   // word to search the picasa public feed with, when it's not loading the featured images
 
@@ -20,6 +21,7 @@ PVector singlePointRGB;
 boolean isMapping, isMappingSingle;
 boolean isColorSpaceRGB;
 float hueMax, rgbMax = 0;
+float brushSize = 3;
 
 Matrix matrix;
 ImageSrc picture; 
@@ -32,10 +34,9 @@ void setup() {
   ortho(0, width, 0, height); //ortho doesn't work in JavaScript mode!
 
   matrix = new Matrix(width/2 + width/4 - 32, height/2, matSize, 0);
-
   picture = new ImageSrc(width/2 - width/4, height/2, 0, picDisplaySize, picMapSize);
-  fillArrayPicasaUrls(true, searchWord);
 
+  fillArrayPicasaUrls(true, searchWord);
   setupControls();
 
   if (isLiveMode) { 
@@ -65,7 +66,7 @@ void draw() {
   } 
 
   lights();
-  shininess(5.0); 
+  //shininess(5.0); 
 
   if (!isLiveMode) {
     if (picture.getPic().width > 0) {
@@ -97,7 +98,7 @@ void keyPressed() {
 void mouseDragged() 
 {
   // rotate camera
-  if (mouseX > width/2) {
+  if ((mouseX > width/2) && (mouseX < btnSize*2)) {
     float speedX = mouseX- pmouseX;
     float speedY = mouseY - pmouseY;
     matrix.rotateMatrix(speedX/300, speedY/300);

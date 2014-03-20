@@ -19,68 +19,96 @@ void setupControls() {
 
   // matrix controllers
   cp5.addButton("cubes")
-    .setValue(0)
-      .setPosition(width - btnSize - margin, height/2 - (btnSize*2 + margin*2))
-        .setSize(btnSize, btnSize)
-          ; 
+    .setBroadcast(false)
+      .setValue(0)
+        .setPosition(width - btnSize - margin, height/2 - (btnSize*2 + margin*2))
+          .setSize(btnSize, btnSize)
+            .setBroadcast(true)
+              ; 
   cp5.addButton("blobs")
-    .setValue(0)
-      .setPosition(width - btnSize - margin, height/2 - (btnSize*1 + margin*1))
-        .setSize(btnSize, btnSize)
-          ;  
+    .setBroadcast(false)
+      .setValue(0)
+        .setPosition(width - btnSize - margin, height/2 - (btnSize*1 + margin*1))
+          .setSize(btnSize, btnSize)
+            .setBroadcast(true)
+              ;  
   cp5.addButton("bars")
-    .setValue(0)
-      .setPosition(width - btnSize - margin, height/2)
-        .setSize(btnSize, btnSize)
-          ;  
+    .setBroadcast(false)
+      .setValue(0)
+        .setPosition(width - btnSize - margin, height/2)
+          .setSize(btnSize, btnSize)
+            .setBroadcast(true)
+              ;  
   cp5.addButton("steps")
-    .setValue(0)
-      .setPosition(width - btnSize - margin, height/2 + (btnSize*1 + margin*1))
-        .setSize(btnSize, btnSize)
-          ; 
+    .setBroadcast(false)
+      .setValue(0)
+        .setPosition(width - btnSize - margin, height/2 + (btnSize*1 + margin*1))
+          .setSize(btnSize, btnSize)
+            .setBroadcast(true)
+              ; 
+
+  cp5.addSlider("scaleBias")
+    .setBroadcast(false)
+      .setLabel("Scale Bias")
+        .setColorLabel(color(120))
+          .setRange(0, 2)
+            .setValue(1)
+              .setPosition(width - btnSize*2 - margin, margin)
+                .setSize(btnSize*2, btnSize/4)
+                  .setBroadcast(true)
+                    ;                   
+  cp5.getController("scaleBias").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
 
   // image manipulation controllers
   if (!isLiveMode) {
 
     knobCont = cp5.addKnob("knobContrast")
-      .setLabel("Contrast")
-        .setColorLabel(color(120))
-          .setRange(0, 5)
-            .setValue(1)
-              .setPosition(margin, height/2 - (btnSize*2 + bigMargin*2))
-                .setRadius(btnSize/2)
-                  .setDragDirection(Knob.VERTICAL)
-                    ;
+      .setBroadcast(false)
+        .setLabel("Contrast")
+          .setColorLabel(color(120))
+            .setRange(0, 5)
+              .setValue(1)
+                .setPosition(margin, height/2 - (btnSize*2 + bigMargin*2))
+                  .setRadius(btnSize/2)
+                    .setDragDirection(Knob.VERTICAL)
+                      .setBroadcast(true)
+                        ;
 
     knobBrigh = cp5.addKnob("knobBrightness")
-      .setLabel("Brightness")
-        .setColorLabel(color(120))
-          .setRange(-128, 128)
-            .setValue(0)
-              .setPosition(margin, height/2 - (btnSize + bigMargin))
-                .setRadius(btnSize/2)
-                  .setDragDirection(Knob.VERTICAL)
-                    ;
+      .setBroadcast(false)
+        .setLabel("Brightness")
+          .setColorLabel(color(120))
+            .setRange(-128, 128)
+              .setValue(0)
+                .setPosition(margin, height/2 - (btnSize + bigMargin))
+                  .setRadius(btnSize/2)
+                    .setDragDirection(Knob.VERTICAL)
+                      .setBroadcast(true)
+                        ;
 
     knobHue = cp5.addKnob("knobChangeHue")
-      .setLabel("Hue")
-        .setColorLabel(color(120))
-          .setRange(0, 360)
-            .setValue(0)
-              .setPosition(margin, height/2)
-                .setRadius(btnSize/2)
-                  .setDragDirection(Knob.VERTICAL)
-                    ;
+      .setBroadcast(false)
+        .setLabel("Hue")
+          .setColorLabel(color(120))
+            .setRange(0, 360)
+              .setValue(0)
+                .setPosition(margin, height/2)
+                  .setRadius(btnSize/2)
+                    .setDragDirection(Knob.VERTICAL)
+                      .setBroadcast(true)
+                        ;
 
     knobSat = cp5.addKnob("knobChangeSat")
-      .setLabel("Saturation")
-        .setColorLabel(color(120))
-          .setRange(-50, 50)
-            .setValue(0)
-              .setPosition(margin, height/2 + (btnSize + bigMargin))
-                .setRadius(btnSize/2)
-                  .setDragDirection(Knob.VERTICAL)
-                    ;
+      .setBroadcast(false)
+        .setLabel("Saturation")
+          .setColorLabel(color(120))
+            .setRange(-50, 50)
+              .setValue(0)
+                .setPosition(margin, height/2 + (btnSize + bigMargin))
+                  .setRadius(btnSize/2)
+                    .setDragDirection(Knob.VERTICAL)
+                      .setBroadcast(true)
+                        ;
 
 
     cp5.addTextfield("TxtSearchWord")
@@ -91,36 +119,56 @@ void setupControls() {
               ;
 
     cp5.addButton("btnSearchWord")
-      .setLabel("Set Image Word Search")
-        .setValue(0)
-          .setPosition(width/2  - width/4 + margin, height/2 - picDisplaySize/2 - margin - btnSize/2)
-            .setSize(picDisplaySize/2 - margin, btnSize/2)
-              ;
+      .setBroadcast(false)
+        .setLabel("Set Image Word Search")
+          .setValue(0)
+            .setPosition(width/2  - width/4 + margin, height/2 - picDisplaySize/2 - margin - btnSize/2)
+              .setSize(picDisplaySize/2 - margin, btnSize/2)
+                .setBroadcast(true)
+                  ;
 
     cp5.addSlider("mappingSpeed")
-      .setLabel("Map\nspeed")
-        .setColorLabel(color(120))
-          .setPosition(width/2  - width/4 + picDisplaySize/2 + margin, height/2 - picDisplaySize/2)
-            .setSize(btnSize/4, picDisplaySize)
-              .setRange(16, 512)
-                .setValue(2048)
-                  .setNumberOfTickMarks(32)
-                    .setColorValueLabel(20) 
-                      ;
+      .setBroadcast(false)
+        .setLabel("Map\nspeed")
+          .setColorLabel(color(120))
+            .setPosition(width/2  - width/4 + picDisplaySize/2 + margin, height/2 - picDisplaySize/2)
+              .setSize(btnSize/4, picDisplaySize)
+                .setRange(16, 512)
+                  .setValue(2048)
+                    .setNumberOfTickMarks(32)
+                      .setColorValueLabel(20) 
+                        .setBroadcast(true)
+                          ;
 
     cp5.addButton("changePic")
-      .setLabel("Get new picture")
-        .setValue(0)
-          .setPosition(width/2  - width/4 + picDisplaySize/2 - btnSize*3, height/2 + picDisplaySize/2 + margin)
-            .setSize(btnSize*3, btnSize/2)
-              ;
+      .setBroadcast(false)
+        .setLabel("Get new picture")
+          .setValue(0)
+            .setPosition(width/2  - width/4 + picDisplaySize/2 - btnSize*3, height/2 + picDisplaySize/2 + margin)
+              .setSize(btnSize*3, btnSize/2)
+                .setBroadcast(true)
+                  ;
 
     cp5.addButton("resetKnobs")
-      .setLabel("Reset")
-        .setValue(0)
-          .setPosition(width/2  - width/4 - picDisplaySize/2, height/2 + picDisplaySize/2 + margin)
-            .setSize(btnSize, btnSize/2)
-              ;
+      .setBroadcast(false)
+        .setLabel("Reset")
+          .setValue(0)
+            .setPosition(width/2  - width/4 - picDisplaySize/2, height/2 + picDisplaySize/2 + margin)
+              .setSize(btnSize, btnSize/2)
+                .setBroadcast(true)
+                  ;
+  } 
+  else {
+
+    cp5.addSlider("brushSize")
+      .setLabel("Brush Size")
+        .setValue(3)
+          .setColorLabel(color(120))
+            .setPosition(width/2  - width/4 - picDisplaySize/2 + btnSize/2 + margin, height/2 + picDisplaySize/2 + margin)
+              .setSize(picDisplaySize - btnSize/2 - margin, btnSize/2)
+                .setRange(0, 40)
+                  ;
+    cp5.getController("brushSize").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
   }
 }
 
@@ -180,14 +228,14 @@ void resetKnobs() {
 
 public void btnSearchWord() {
   String searchWord = cp5.get(Textfield.class, "TxtSearchWord").getText();
-  println(searchWord);
+  //println(searchWord);
   if (searchWord.length() == 0) {
     fillArrayPicasaUrls(true, "Getting Featured Images");
   } 
   else {
     fillArrayPicasaUrls(false, searchWord);
   }
-  changePic()
+  changePic();
 }
 
 public void changePic() {

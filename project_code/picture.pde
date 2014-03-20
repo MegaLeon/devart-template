@@ -194,7 +194,7 @@ class ImageSrc {
 
     singlePointRGB = new PVector(posX, posY, posZ);
 
-    println(singlePointRGB);
+    //println(singlePointRGB);
   }
 
   float getMaxValue( float _oldValue, float _newValue) {

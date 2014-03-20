@@ -40,38 +40,14 @@ void fillArrayPicasaUrls(boolean getFeatured, String _searchWord) {
     println("Problem with the AlbumFeed: " + e);
   }
 
-  /*PhotoEntry photo = searchResultsFeed.getPhotoEntries().get(int(random( searchResultsFeed.getPhotoEntries().size())));
-   String imageUrl = photo.getMediaThumbnails().get(0).getUrl();
-   String croppedUrl = imageUrl.replace("s72", "s512-c");
-   return croppedUrl;*/
-
   imageUrls = new String[searchResultsFeed.getPhotoEntries().size()];
-  //for (PhotoEntry photo : searchResultsFeed.getPhotoEntries()) {
+
   for (int i = 0; i < searchResultsFeed.getPhotoEntries().size(); i++) {
+    
     PhotoEntry photo = searchResultsFeed.getPhotoEntries().get(i);
     String imageUrl = photo.getMediaThumbnails().get(0).getUrl();
     String croppedUrl = imageUrl.replace("s72", "s512-c");
     imageUrls[i] = croppedUrl;
-    /*
-    // get the data out of the pictures
-     println("Title: " + photo.getTitle().getPlainText());   
-     println("URL: " + photo.getMediaThumbnails().get(0).getUrl());
-     
-     //the "s72" number in the url is the size of the thumbnail. Change it to get the image size.
-     //The uncropped generated sizes are: 94, 110, 128, 200, 220, 288, 320, 400, 512, 576, 640, 720, 800, 912, 1024, 1152, 1280, 1440, 1600
-     //replace "s72" with, for example, "s512" or "w990-h600-c" to force size, width, height or add cropping.
-     //in my case, I want a 220*220 cropped image.
-     String imageUrl = photo.getMediaThumbnails().get(0).getUrl();
-     String croppedUrl = imageUrl.replace("s72", "s220-c");
-     // cropped image URL
-     println(croppedUrl);
-     
-     // Create a new PImage
-     PImage pic = loadImage(croppedUrl);   
-     // Sort in on a grid with some modulus expressions
-     image(pic, 32 + picNumber % 4 * 240, 10 + (picNumber/ 4) % 2 * 240);
-     picNumber ++;
-     */
   }
 }
 
