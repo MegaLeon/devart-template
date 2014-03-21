@@ -51,7 +51,7 @@ void setupControls() {
     .setBroadcast(false)
       .setLabel("Scale Bias")
         .setColorLabel(color(120))
-          .setRange(0, 2)
+          .setRange(0, 20)
             .setValue(1)
               .setPosition(width - btnSize*2 - margin, margin)
                 .setSize(btnSize*2, btnSize/4)

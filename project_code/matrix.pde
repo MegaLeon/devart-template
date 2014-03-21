@@ -20,10 +20,20 @@ class Matrix {
     translate(xPos, yPos);
 
     updateRotation();
-
     drawPanels(dimension);
+
+    if (objRecording) {
+      beginRecord("nervoussystem.obj.OBJExport", "arsMatrix.obj");
+    }  
+
     drawStructure(visMode, subdivisions);
     if (isMappingSingle) drawSinglePixelRGB(0, 0, 0, dimension, subdivisions);
+
+    if (objRecording) {
+      endRecord();
+      objRecording = false;
+    }
+    
     popMatrix();
   }
 

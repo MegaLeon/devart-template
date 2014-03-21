@@ -1,18 +1,21 @@
 import processing.opengl.*;
+import nervoussystem.obj.*;
 
-int guiScale = 1;           // Scale value for the interface (1 works fine with 1000*500)
+boolean objRecording = false;
+
+int guiScale = 1;            // Scale value for the interface (1 works fine with 1000*500)
 
 int matSize = 240;           // Size of the 3D matrix
 int picMapSize = 240;        // Size of the picture being mapped (bigger images takes longer and create more 3D artifacts)
 int picDisplaySize = 240;    // Size of the picture being displayed (doesn't affect mapping)
 
-boolean isLiveMode = false;
+boolean isLiveMode = true;
 boolean isAnimated = false;      // animate the mapping process or not
 int mappingSpeed = 2048;         // pixel analysed per second during the animated analysis
 int subdivisions = 12;
 float scaleBias = 1;
 
-String searchWord = "picasso";   // word to search the picasa public feed with, when it's not loading the featured images
+String searchWord;   // word to search the picasa public feed with, when it's not loading the featured images
 
 int[][][] colorMatrixRemap;
 int[][][] colorMatrixHSV;
@@ -36,14 +39,15 @@ void setup() {
   matrix = new Matrix(width/2 + width/4 - 32, height/2, matSize, 0);
   picture = new ImageSrc(width/2 - width/4, height/2, 0, picDisplaySize, picMapSize);
 
-  fillArrayPicasaUrls(true, searchWord);
-  setupControls();
+  setupControls(); // initialize interface
+
+  fillArrayPicasaUrls(true, "");
+  picture.pickPicasaImage();
+  initialize(true);
 
   if (isLiveMode) { 
     pictureLive = new LiveCanvas(width/2 - width/4, height/2, picDisplaySize);
   }
-
-  initialize(true);
 }
 
 void initialize(boolean _isAnimated) { 
@@ -90,31 +94,34 @@ void draw() {
 // save image
 void keyPressed() {
   if (key == 's') {
-    save("normal.png");
+    //save("normal.png");
+    objRecording = true;
   }
 }
 
 // mouse input
-void mouseDragged() 
+void mouseDragged()
 {
   // rotate camera
-  if ((mouseX > width/2) && (mouseX < btnSize*2)) {
+  println("Okay");
+  if ((mouseX > width/2) && (mouseX < (width - btnSize*2))) {
+    println("Super");
     float speedX = mouseX- pmouseX;
     float speedY = mouseY - pmouseY;
     matrix.rotateMatrix(speedX/300, speedY/300);
   } 
-  // visualize pixel location in the matrix
   else if (!isLiveMode) {
-    //if (picture.isInsidePicture(mouseX, mouseY)) {
-
+    // TODO: Single Pixel Visualization. Refine it according to the visualization mode
+    //       selected, currently works fine with cube / blobs
+    /*
     isMappingSingle = true;
-    int clickX = int(mouseX - picture.getPos().x + picDisplaySize/2);
-    int clickY = int(mouseY - picture.getPos().y + picDisplaySize/2);
-    int remapX = int(map(clickX, 0, picDisplaySize, 0, picMapSize));
-    int remapY = int(map(clickY, 0, picDisplaySize, 0, picMapSize));
-
-    picture.readSinglePixel(subdivisions, remapX, remapY);
-    //}
+     int clickX = int(mouseX - picture.getPos().x + picDisplaySize/2);
+     int clickY = int(mouseY - picture.getPos().y + picDisplaySize/2);
+     int remapX = int(map(clickX, 0, picDisplaySize, 0, picMapSize));
+     int remapY = int(map(clickY, 0, picDisplaySize, 0, picMapSize));
+     
+     picture.readSinglePixel(subdivisions, remapX, remapY);
+     */
   }
 }
 

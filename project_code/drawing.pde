@@ -2,9 +2,9 @@ void drawCubesRGB(int _x, int _y, int _z, int size, int count) {
   //float scaleValue = (rgbMax) / (size);
   float sizeValue;
 
-  for (int i = 1; i < count; i++) {
-    for (int j = 1; j < count; j++) {
-      for (int k = 1; k < count; k++) {
+  for (int i = 0; i < count; i++) {
+    for (int j = 0; j < count; j++) {
+      for (int k = 0; k < count; k++) {
         pushMatrix();
 
         // move to center of each "slot"
@@ -31,9 +31,9 @@ void drawVertBarsHue(int _x, int _y, int _z, int size, int count) {
   float newHue, newSat, newVal = 0;
   float sizeValue = 0;
 
-  for (int i = 1; i < count; i++) {
-    for (int j = 1; j < count; j++) {
-      for (int k = 1; k < count; k++) {
+  for (int i = 0; i < count; i++) {
+    for (int j = 0; j < count; j++) {
+      for (int k = 0; k < count; k++) {
         pushMatrix();
 
         // move to center of each "slot"
@@ -68,9 +68,9 @@ void drawHorzBarsHue(int _x, int _y, int _z, int size, int count) {
   float sizeValue = 0;
   isColorSpaceRGB = false;
 
-  for (int i = 1; i < count; i++) {
-    for (int j = 1; j < count; j++) {
-      for (int k = 1; k < count; k++) {
+  for (int i = 0; i < count; i++) {
+    for (int j = 0; j < count; j++) {
+      for (int k = 0; k < count; k++) {
         pushMatrix();
 
         // move to center of each "slot"
