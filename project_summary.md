@@ -29,7 +29,10 @@ An early javascript test as the visualization techniques were coming into form. 
 - [Processing.js](http://processingjs.org/ "Processing.js")
 - [dat-gui](https://code.google.com/p/dat-gui/ "dat-gui")
 
-## Videos
+## Image & Videos
+![visualizations](/project_images/06vis.png?raw=true "visualizations")
+![featured](/project_images/07featured.png?raw=true "featured")
+
 ### Application Overview
 A video of my playing with the app, switching visualization modes and their options, getting pictures off the Picasa's public feed and not, and toying with the color correction knobs.
 http://youtu.be/YaA3dAJz6sI
@@ -39,7 +42,7 @@ Showing how different search terms lead to different images being dowloaded than
 http://youtu.be/de8ctoCSosI
 
 ### Android Mode
-ArsMatrix running with limited options on a Nexus 7
+ArsMatrix running on a Nexus 7, mapping images saved locally
 https://www.youtube.com/watch?v=vvfsJg6Hax4
 
 ### Live Mode
