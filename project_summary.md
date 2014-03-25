@@ -12,18 +12,28 @@ ArsMatrix is an Processing Project aimed at becoming an interactive installation
 
 The animated process and will show the 3D piece growing as the image is being scanned. The user will be able to change color balances and 3D visualization styles and see their changes in real time, hopefully coming to an higher understanding of color in what I hope to be a mesmerizing experience.
 
-I am planning to include a few popularing painting within the application, but I want to implement Goggle+, Instgrams and other APIs in order to make the user choose a picture of his own, or to take a picture through a webcam.
+Images are picked randomly from the Google Picasa’s public feeds, eaither from the featured images album or using a word chosen by the user as a search bias. During the last development stage I implemented an experimental "live mode" uin which people will be able to paint a sketch on a blank canvas and see their images coming to life as 3D structures in real time, encouraging them to unleash their hidden artist.
+
+In the perfect image of the interactive installation I have in my mind, people are able to send the resulting 3D figure to a 3D printer and get a tiny, multi-colored miniature as a memento of the whole experience.
 
 ## Link to Prototypes
 - [ArsMatrix JS](http://arsmatrix.neocities.org/jstest.html "Prototype 01 | JS Applet")
-
 An early javascript test as the visualization techniques were coming into form. Use the GUI on the right to change settings and drag the slider to switch between different paintings, click "Start Mapping" to restart the process.
-
 
 ## Libraries Used
 - [Processing](http://processing.org/ "Processing")
 - [Toxiclibs](http://toxiclibs.org/ "Toxiclibs")
 - [ControlP5](http://www.sojamo.de/libraries/controlP5/ "ControlP5")
 - [Picasa APIs](https://developers.google.com/picasa-web/ "Picasa APIs")
+- [objexporter](http://n-e-r-v-o-u-s.com/tools/obj/ "NervousSystem's objexporter")
 - [Processing.js](http://processingjs.org/ "Processing.js")
 - [dat-gui](https://code.google.com/p/dat-gui/ "dat-gui")
+
+## Videos
+# Application Overview
+A video of my playing with the app, switching visualization modes and their options, getting pictures off the Picasa's public feed and not, and toying with the color correction knobs.
+http://youtu.be/YaA3dAJz6sI
+
+# Picasa API Integration
+Showing how different search terms lead to different images being dowloaded thanks to the Goggle Picasa APIs
+http://youtu.be/de8ctoCSosI
