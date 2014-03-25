@@ -6,7 +6,7 @@ import toxi.processing.*;
 
 import processing.opengl.*;
 
-float ISO_THRESHOLD = 0.05 * (matSize/240);
+float ISO_THRESHOLD = 0.05 * scaleBias * (matSize/240);
 float NS = 0.03 * (matSize/240);
 Vec3D SCALE = new Vec3D(1, 1, 1).scaleSelf(300 * (matSize/240));
 float subd = 0.1 / (matSize/240);
@@ -22,7 +22,7 @@ void initMetaballs(int size, int count) {
   surface = new ArrayIsoSurface(volume);
 }
 
-void drawMetaballs(int _x, int _y, int _z, int size, int count) {
+void drawMetaballs(int _x, int _y, int _z, int size, int count, PGraphics pg) {
   float sizeValue;
   int subdSize = int(size*subd);
 
@@ -52,10 +52,10 @@ void drawMetaballs(int _x, int _y, int _z, int size, int count) {
   pushMatrix();
   translate(_x, _y, _z);
   scale(0.75);
-  fill(255);
-  noStroke();
+  pg.fill(255);
+  pg.noStroke();
 
-  beginShape(TRIANGLES);
+  pg.beginShape(TRIANGLES);
   mesh.computeVertexNormals();
   colorModeRgb(true);
   // advance by 12 slots in the vertexList array, since it's structured like this:
@@ -63,18 +63,18 @@ void drawMetaballs(int _x, int _y, int _z, int size, int count) {
   // http://toxiclibs.org/docs/core/toxi/geom/mesh/TriangleMesh.html#getMeshAsVertexArray(float[], int, int)
   for (int currentVert = 0; currentVert < vertexList.length ; currentVert += 12) {
     //map position of the first vertex of the the face to the red color range
-    fill(map(vertexList[currentVert], -size/2, size/2, 0, 255), map(vertexList[currentVert+1], -size/2, size/2, 0, 255), map(vertexList[currentVert+2], -size/2, size/2, 0, 255));
-    vertex( vertexList[currentVert], vertexList[currentVert+1], vertexList[currentVert+2] );
+    pg.fill(map(vertexList[currentVert], -size/2, size/2, 0, 255), map(vertexList[currentVert+1], -size/2, size/2, 0, 255), map(vertexList[currentVert+2], -size/2, size/2, 0, 255));
+    pg.vertex( vertexList[currentVert], vertexList[currentVert+1], vertexList[currentVert+2] );
     
     //map position of the second vertex of the the face to the green color range
-    fill(map(vertexList[currentVert+4], -size/2, size/2, 0, 255), map(vertexList[currentVert+5], -size/2, size/2, 0, 255), map(vertexList[currentVert+6], -size/2, size/2, 0, 255));
-    vertex( vertexList[currentVert+4], vertexList[currentVert+5], vertexList[currentVert+6] );
+    pg.fill(map(vertexList[currentVert+4], -size/2, size/2, 0, 255), map(vertexList[currentVert+5], -size/2, size/2, 0, 255), map(vertexList[currentVert+6], -size/2, size/2, 0, 255));
+    pg.vertex( vertexList[currentVert+4], vertexList[currentVert+5], vertexList[currentVert+6] );
     
     //map position of the third vertex of the the face to the blue color range
-    fill(map(vertexList[currentVert+8], -size/2, size/2, 0, 255), map(vertexList[currentVert+9], -size/2, size/2, 0, 255), map(vertexList[currentVert+10], -size/2, size/2, 0, 255));
-    vertex( vertexList[currentVert+8], vertexList[currentVert+9], vertexList[currentVert+10] );
+    pg.fill(map(vertexList[currentVert+8], -size/2, size/2, 0, 255), map(vertexList[currentVert+9], -size/2, size/2, 0, 255), map(vertexList[currentVert+10], -size/2, size/2, 0, 255));
+    pg.vertex( vertexList[currentVert+8], vertexList[currentVert+9], vertexList[currentVert+10] );
   }
-  endShape();
+  pg.endShape();
 
   //gfx.mesh(mesh, true);
 

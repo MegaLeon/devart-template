@@ -3,9 +3,10 @@ ControlP5 cp5;
 int btnSize;
 int margin;
 int bigMargin;
+int fontSize;
 int currentImg = 0;
 
-float contrast, brightness, kHue, kSaturation;
+float contrast = 1, brightness, kHue, kSaturation;
 
 Knob knobHue, knobSat, knobCont, knobBrigh;
 
@@ -16,6 +17,7 @@ void setupControls() {
   btnSize = 48 * guiScale;
   margin = 8 * guiScale;
   bigMargin = 16 * guiScale;
+  fontSize = 9 * guiScale;
 
   // matrix controllers
   cp5.addButton("cubes")
@@ -24,28 +26,32 @@ void setupControls() {
         .setPosition(width - btnSize - margin, height/2 - (btnSize*2 + margin*2))
           .setSize(btnSize, btnSize)
             .setBroadcast(true)
-              ; 
+              .getCaptionLabel().setSize(fontSize)
+                ; 
   cp5.addButton("blobs")
     .setBroadcast(false)
       .setValue(0)
         .setPosition(width - btnSize - margin, height/2 - (btnSize*1 + margin*1))
           .setSize(btnSize, btnSize)
             .setBroadcast(true)
-              ;  
+              .getCaptionLabel().setSize(fontSize)
+                ;  
   cp5.addButton("bars")
     .setBroadcast(false)
       .setValue(0)
         .setPosition(width - btnSize - margin, height/2)
           .setSize(btnSize, btnSize)
             .setBroadcast(true)
-              ;  
+              .getCaptionLabel().setSize(fontSize)
+                ;  
   cp5.addButton("steps")
     .setBroadcast(false)
       .setValue(0)
         .setPosition(width - btnSize - margin, height/2 + (btnSize*1 + margin*1))
           .setSize(btnSize, btnSize)
             .setBroadcast(true)
-              ; 
+              .getCaptionLabel().setSize(fontSize)
+                ; 
 
   cp5.addSlider("scaleBias")
     .setBroadcast(false)
@@ -54,9 +60,10 @@ void setupControls() {
           .setRange(0, 20)
             .setValue(1)
               .setPosition(width - btnSize*2 - margin, margin)
-                .setSize(btnSize*2, btnSize/4)
+                .setSize(btnSize*2, btnSize/2)
                   .setBroadcast(true)
-                    ;                   
+                    .getCaptionLabel().setSize(fontSize)
+                      ;                   
   cp5.getController("scaleBias").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
 
   // image manipulation controllers
@@ -71,8 +78,10 @@ void setupControls() {
                 .setPosition(margin, height/2 - (btnSize*2 + bigMargin*2))
                   .setRadius(btnSize/2)
                     .setDragDirection(Knob.VERTICAL)
-                      .setBroadcast(true)
+                      .setBroadcast(true)                       
                         ;
+    knobCont.getCaptionLabel().setSize(fontSize);
+    knobCont.getValueLabel().setSize(fontSize);
 
     knobBrigh = cp5.addKnob("knobBrightness")
       .setBroadcast(false)
@@ -85,6 +94,8 @@ void setupControls() {
                     .setDragDirection(Knob.VERTICAL)
                       .setBroadcast(true)
                         ;
+    knobBrigh.getCaptionLabel().setSize(fontSize);
+    knobBrigh.getValueLabel().setSize(fontSize);
 
     knobHue = cp5.addKnob("knobChangeHue")
       .setBroadcast(false)
@@ -97,6 +108,8 @@ void setupControls() {
                     .setDragDirection(Knob.VERTICAL)
                       .setBroadcast(true)
                         ;
+    knobHue.getCaptionLabel().setSize(fontSize);
+    knobHue.getValueLabel().setSize(fontSize);
 
     knobSat = cp5.addKnob("knobChangeSat")
       .setBroadcast(false)
@@ -109,6 +122,8 @@ void setupControls() {
                     .setDragDirection(Knob.VERTICAL)
                       .setBroadcast(true)
                         ;
+    knobSat.getCaptionLabel().setSize(fontSize);
+    knobSat.getValueLabel().setSize(fontSize);
 
 
     cp5.addTextfield("TxtSearchWord")
@@ -117,15 +132,18 @@ void setupControls() {
           .setSize(picDisplaySize/2 - margin, btnSize/2)
             .setFocus(true)
               ;
+    cp5.getController("TxtSearchWord").getValueLabel().setSize(fontSize);
+    cp5.getController("TxtSearchWord").getCaptionLabel().setSize(fontSize);
 
-    cp5.addButton("btnSearchWord")
-      .setBroadcast(false)
-        .setLabel("Set Image Word Search")
-          .setValue(0)
-            .setPosition(width/2  - width/4 + margin, height/2 - picDisplaySize/2 - margin - btnSize/2)
-              .setSize(picDisplaySize/2 - margin, btnSize/2)
-                .setBroadcast(true)
-                  ;
+      cp5.addButton("btnSearchWord")
+        .setBroadcast(false)
+          .setLabel("Set Image Word Search")
+            .setValue(0)
+              .setPosition(width/2  - width/4 + margin, height/2 - picDisplaySize/2 - margin - btnSize/2)
+                .setSize(picDisplaySize/2 - margin, btnSize/2)
+                  .setBroadcast(true)
+                    .getCaptionLabel().setSize(fontSize)
+                      ;
 
     cp5.addSlider("mappingSpeed")
       .setBroadcast(false)
@@ -133,12 +151,13 @@ void setupControls() {
           .setColorLabel(color(120))
             .setPosition(width/2  - width/4 + picDisplaySize/2 + margin, height/2 - picDisplaySize/2)
               .setSize(btnSize/4, picDisplaySize)
-                .setRange(16, 512)
+                .setRange(60, 960)
                   .setValue(2048)
-                    .setNumberOfTickMarks(32)
+                    .setNumberOfTickMarks(16)
                       .setColorValueLabel(20) 
                         .setBroadcast(true)
-                          ;
+                          .getCaptionLabel().setSize(fontSize)
+                            ;
 
     cp5.addButton("changePic")
       .setBroadcast(false)
@@ -147,7 +166,9 @@ void setupControls() {
             .setPosition(width/2  - width/4 + picDisplaySize/2 - btnSize*3, height/2 + picDisplaySize/2 + margin)
               .setSize(btnSize*3, btnSize/2)
                 .setBroadcast(true)
-                  ;
+                  .getCaptionLabel().setSize(fontSize)
+
+                    ;
 
     cp5.addButton("resetKnobs")
       .setBroadcast(false)
@@ -156,7 +177,9 @@ void setupControls() {
             .setPosition(width/2  - width/4 - picDisplaySize/2, height/2 + picDisplaySize/2 + margin)
               .setSize(btnSize, btnSize/2)
                 .setBroadcast(true)
-                  ;
+                  .getCaptionLabel().setSize(fontSize)
+
+                    ;
   } 
   else {
 
@@ -167,7 +190,8 @@ void setupControls() {
             .setPosition(width/2  - width/4 - picDisplaySize/2 + btnSize/2 + margin, height/2 + picDisplaySize/2 + margin)
               .setSize(picDisplaySize - btnSize/2 - margin, btnSize/2)
                 .setRange(0, 40)
-                  ;
+                  .getCaptionLabel().setSize(fontSize)
+                    ;
     cp5.getController("brushSize").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
   }
 }

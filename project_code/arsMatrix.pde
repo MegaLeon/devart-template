@@ -1,21 +1,24 @@
+/* @pjs preload="armada.png, gioconda.png, napoleon.png, stars.png, sunday.png, twilight.png"; 
+ */
+
 import processing.opengl.*;
 import nervoussystem.obj.*;
 
-boolean objRecording = false;
+boolean objRecording = false; // flag to export 3d model
 
-int guiScale = 1;            // Scale value for the interface (1 works fine with 1000*500)
+int guiScale = 1;             // Scale value for the interface (1 works fine with 1000*500)
 
-int matSize = 240;           // Size of the 3D matrix
-int picMapSize = 240;        // Size of the picture being mapped (bigger images takes longer and create more 3D artifacts)
-int picDisplaySize = 240;    // Size of the picture being displayed (doesn't affect mapping)
+int matSize = 240;            // Size of the 3D matrix
+int picMapSize = 240;         // Size of the picture being mapped (bigger images takes longer and creates more 3D artifacts)
+int picDisplaySize = 240;     // Size of the picture being displayed (doesn't affect mapping)
 
-boolean isLiveMode = true;
-boolean isAnimated = false;      // animate the mapping process or not
-int mappingSpeed = 2048;         // pixel analysed per second during the animated analysis
-int subdivisions = 12;
-float scaleBias = 1;
+boolean isLiveMode = false;   // activate live painting on canvas mode
+boolean isAnimated = false;   // animate the mapping process or not
+int mappingSpeed = 480;       // pixel analysed per second during the animated analysis
+int subdivisions = 12;        // level of detail of the 3d matrix
+float scaleBias = 1;          // relative size of the 3d elements
 
-String searchWord;   // word to search the picasa public feed with, when it's not loading the featured images
+String searchWord;            // word to search the picasa public feed with, when it's not loading the featured images
 
 int[][][] colorMatrixRemap;
 int[][][] colorMatrixHSV;
@@ -32,17 +35,20 @@ LiveCanvas pictureLive;
 
 void setup() {
   frameRate(60);
-  smooth(4);
+  noSmooth();
   size(1000, 500, OPENGL);
-  ortho(0, width, 0, height); //ortho doesn't work in JavaScript mode!
+  ortho(0, width, 0, height); //ortho doesn't work in JavaScript mode
 
   matrix = new Matrix(width/2 + width/4 - 32, height/2, matSize, 0);
   picture = new ImageSrc(width/2 - width/4, height/2, 0, picDisplaySize, picMapSize);
 
-  setupControls(); // initialize interface
+  setupControls();
 
-  fillArrayPicasaUrls(true, "");
-  picture.pickPicasaImage();
+  fillArrayPicasaUrls(true, "");  // Picasa Online Image
+  picture.pickPicasaImage();      // 
+
+  //picture.pickImage(0);         // Cached Image (fast for debug / testing)
+
   initialize(true);
 
   if (isLiveMode) { 
@@ -62,25 +68,21 @@ void initialize(boolean _isAnimated) {
 }
 
 void draw() {
-  if (!isColorSpaceRGB) {
-    background(0, 0, map(230, 0, 255, 0, 100));
-  }
-  else {
-    background(230);
-  } 
+  // if requested, draw the matrix and export it as a coloured .obj
+  smartBackground(230);
 
-  lights();
-  //shininess(5.0); 
-
-  if (!isLiveMode) {
+  // draw the requested picture
+  if (!isLiveMode) { 
     if (picture.getPic().width > 0) {
       picture.readPixels(isAnimated, mappingSpeed);
       picture.display();
     } 
-    else {
+    // if loading (width/height = 0), show loading box
+    else { 
       picture.displayLoadingRect();
     }
   } 
+  // draw the canvas for the live mode
   else {
     pictureLive.display();
     initialize(false);
@@ -88,27 +90,31 @@ void draw() {
     picture.display();
   }
 
-  matrix.display();
+  // draw the 3D Matrix
+  lights(); 
+  matrix.display(this.g);
+  noLights();
 }
 
-// save image
+
 void keyPressed() {
+  // save image
   if (key == 's') {
-    //save("normal.png");
+    save("normal.png");
+  }
+  // save 3d model
+  if (key == 'r') {
     objRecording = true;
   }
 }
 
-// mouse input
 void mouseDragged()
 {
   // rotate camera
-  println("Okay");
   if ((mouseX > width/2) && (mouseX < (width - btnSize*2))) {
-    println("Super");
     float speedX = mouseX- pmouseX;
     float speedY = mouseY - pmouseY;
-    matrix.rotateMatrix(speedX/300, speedY/300);
+    matrix.rotateMatrix(-speedX/300, -speedY/300);
   } 
   else if (!isLiveMode) {
     // TODO: Single Pixel Visualization. Refine it according to the visualization mode

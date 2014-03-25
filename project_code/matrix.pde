@@ -15,41 +15,47 @@ class Matrix {
     initMetaballs(dimension, subdivisions);
   }
 
-  void display() {
+  void display(PGraphics pg) {
+    
+    if (objRecording) {
+      beginRecord("nervoussystem.obj.OBJExport", "filename.obj");
+      OBJExport obj = (OBJExport) createGraphics(10, 10, "nervoussystem.obj.OBJExport", "colored.obj");
+      obj.setColor(true);
+      //obj.beginDraw();
+      beginRaw(obj);
+      drawStructure(visMode, subdivisions, obj);
+      endRaw();
+      //obj.endDraw();
+      //obj.dispose();
+      objRecording = false;
+    } 
+
     pushMatrix();
     translate(xPos, yPos);
 
     updateRotation();
     drawPanels(dimension);
+    
+    drawStructure(visMode, subdivisions, pg);
 
-    if (objRecording) {
-      beginRecord("nervoussystem.obj.OBJExport", "arsMatrix.obj");
-    }  
-
-    drawStructure(visMode, subdivisions);
     if (isMappingSingle) drawSinglePixelRGB(0, 0, 0, dimension, subdivisions);
 
-    if (objRecording) {
-      endRecord();
-      objRecording = false;
-    }
-    
     popMatrix();
   }
 
-  void drawStructure(int visualizationMode, int subdivisions) {
+  void drawStructure(int visualizationMode, int subdivisions, PGraphics pg) {
     switch(visualizationMode) {
     case 0: 
-      drawCubesRGB(0, 0, 0, dimension, subdivisions);    
+      drawCubesRGB(0, 0, 0, dimension, subdivisions, pg);    
       break;
     case 1: 
-      drawMetaballs(0, 0, 0, dimension, subdivisions);  
+      drawMetaballs(0, 0, 0, dimension, subdivisions, pg);  
       break;
     case 2: 
-      drawVertBarsHue(0, 0, 0, dimension, subdivisions);  
+      drawVertBarsHue(0, 0, 0, dimension, subdivisions, pg);  
       break;
     case 3: 
-      drawHorzBarsHue(0, 0, 0, dimension, subdivisions);  
+      drawHorzBarsHue(0, 0, 0, dimension, subdivisions, pg);  
       break;
     }
   }

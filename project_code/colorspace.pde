@@ -9,6 +9,17 @@ void colorModeRgb(boolean _isRgb) {
   }
 }
 
+void colorModeRgbPG(boolean _isRgb, PGraphics pg) {
+  if (_isRgb) {
+    pg.colorMode(RGB, 255);
+    isColorSpaceRGB = true;
+  } 
+  else {
+    pg.colorMode(HSB, 360, 100, 100);
+    isColorSpaceRGB = false;
+  }
+}
+
 boolean getCurrentColorSpace() {
   if (isColorSpaceRGB) {
     return true;
@@ -24,6 +35,15 @@ void restorePreviousColorSpace(boolean _wasPreviousRgb) {
   } 
   else {
     colorModeRgb(false);
+  }
+}
+
+void smartBackground(int _intensity) {
+  if (!isColorSpaceRGB) {
+    background(0, 0, map(_intensity, 0, 255, 0, 100));
+  }
+  else {
+    background(_intensity);
   }
 }
 
