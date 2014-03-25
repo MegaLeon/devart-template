@@ -30,10 +30,10 @@ An early javascript test as the visualization techniques were coming into form. 
 - [dat-gui](https://code.google.com/p/dat-gui/ "dat-gui")
 
 ## Videos
-# Application Overview
+### Application Overview
 A video of my playing with the app, switching visualization modes and their options, getting pictures off the Picasa's public feed and not, and toying with the color correction knobs.
 http://youtu.be/YaA3dAJz6sI
 
-# Picasa API Integration
+### Picasa API Integration
 Showing how different search terms lead to different images being dowloaded thanks to the Goggle Picasa APIs
 http://youtu.be/de8ctoCSosI
