@@ -84,7 +84,7 @@ void drawHorzBarsHue(int _x, int _y, int _z, int size, int count, PGraphics pg) 
         newSat = map(j, 0, count-1, 0, 100);
         newVal = map(k, 0, count-1, 0, 100);
 
-        pg.fill(newHue, 50, 50);
+        pg.fill(newHue, newSat, newVal);
         //pg.stroke(newHue, newSat, newVal/1.5);
         pg.noStroke();
 

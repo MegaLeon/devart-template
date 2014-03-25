@@ -1,6 +1,3 @@
-/* @pjs preload="armada.png, gioconda.png, napoleon.png, stars.png, sunday.png, twilight.png"; 
- */
-
 import processing.opengl.*;
 import nervoussystem.obj.*;
 
@@ -35,7 +32,8 @@ LiveCanvas pictureLive;
 
 void setup() {
   frameRate(60);
-  noSmooth();
+  //noSmooth();
+  smooth(2);
   size(1000, 500, OPENGL);
   ortho(0, width, 0, height); //ortho doesn't work in JavaScript mode
 
@@ -44,10 +42,10 @@ void setup() {
 
   setupControls();
 
-  fillArrayPicasaUrls(true, "");  // Picasa Online Image
-  picture.pickPicasaImage();      // 
-
-  //picture.pickImage(0);         // Cached Image (fast for debug / testing)
+  fillArrayPicasaUrls(true, "");  
+  
+  //picture.pickPicasaImage();                 // Picasa Online Image 
+  //picture.pickImage(int(random(5)));         // Cached Image (fast for debug / testing)
 
   initialize(true);
 
@@ -98,12 +96,12 @@ void draw() {
 
 
 void keyPressed() {
-  // save image
-  if (key == 's') {
+  // save image when pressing "9"
+  if (key == '9') {
     save("normal.png");
   }
-  // save 3d model
-  if (key == 'r') {
+  // save 3d model when pressing "0" - only implemented correctly with "cubes" visualization for testing
+  if (key == '0') {
     objRecording = true;
   }
 }
@@ -131,7 +129,7 @@ void mouseDragged()
   }
 }
 
-void mouseReleased() {
+/*void mouseReleased() {
   isMappingSingle = false;
-}
+}*/
 

@@ -207,7 +207,7 @@ class ImageSrc {
   void pickImage(int imgNumber) {
     switch(imgNumber) {
     case 0: 
-      img = loadImage("napoleon.png");
+      img = loadImage("gioconda.png");
       break;  
     case 1: 
       img = loadImage("stars.png"); 
@@ -220,6 +220,9 @@ class ImageSrc {
       break;
     case 4: 
       img = loadImage("armada.png"); 
+      break;
+    case 5: 
+      img = loadImage("napoleon.png");
       break;
     }
     displayImg = img;
@@ -241,7 +244,7 @@ class ImageSrc {
     }
     else return false;
   }
-  
+
   void setImage(PImage _img) {
     img = _img;
     displayImg = img;

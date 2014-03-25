@@ -1,3 +1,5 @@
+//functions to manage colorspace (RGB / HSB) operations.
+
 void colorModeRgb(boolean _isRgb) {
   if (_isRgb) {
     colorMode(RGB, 255);

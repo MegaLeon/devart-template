@@ -6,7 +6,7 @@ import toxi.processing.*;
 
 import processing.opengl.*;
 
-float ISO_THRESHOLD = 0.05 * scaleBias * (matSize/240);
+float ISO_THRESHOLD = 0.05 / (scaleBias) * (matSize/240);
 float NS = 0.03 * (matSize/240);
 Vec3D SCALE = new Vec3D(1, 1, 1).scaleSelf(300 * (matSize/240));
 float subd = 0.1 / (matSize/240);
@@ -45,6 +45,7 @@ void drawMetaballs(int _x, int _y, int _z, int size, int count, PGraphics pg) {
   volume.closeSides();
   // store in IsoSurface and compute surface mesh for the given threshold value
   surface.reset();
+  ISO_THRESHOLD = 0.05 / (scaleBias) * (matSize/240);
   mesh = (TriangleMesh)surface.computeSurfaceMesh(mesh, ISO_THRESHOLD);
   float[] vertexList = mesh.getMeshAsVertexArray();
 

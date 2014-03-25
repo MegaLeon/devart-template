@@ -57,7 +57,7 @@ void setupControls() {
     .setBroadcast(false)
       .setLabel("Scale Bias")
         .setColorLabel(color(120))
-          .setRange(0, 20)
+          .setRange(0, 2)
             .setValue(1)
               .setPosition(width - btnSize*2 - margin, margin)
                 .setSize(btnSize*2, btnSize/2)
@@ -147,7 +147,7 @@ void setupControls() {
 
     cp5.addSlider("mappingSpeed")
       .setBroadcast(false)
-        .setLabel("Map\nspeed")
+        .setLabel("Map\n\nspeed")
           .setColorLabel(color(120))
             .setPosition(width/2  - width/4 + picDisplaySize/2 + margin, height/2 - picDisplaySize/2)
               .setSize(btnSize/4, picDisplaySize)
@@ -263,15 +263,14 @@ public void btnSearchWord() {
 }
 
 public void changePic() {
-  if (currentImg < 4) currentImg++; 
+  if (currentImg < 5) currentImg++; 
   else currentImg = 0;
 
-  //picture.pickImage(currentImg);
-  picture.pickPicasaImage();
+  //picture.pickImage(currentImg); // Pick local image
+  picture.pickPicasaImage();       // Pick online image
   initialize(true);
   resetKnobs();
 }
-
 
 //************************************************************************************
 //old dat-gui stuff

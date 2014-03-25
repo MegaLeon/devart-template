@@ -18,15 +18,12 @@ class Matrix {
   void display(PGraphics pg) {
     
     if (objRecording) {
-      beginRecord("nervoussystem.obj.OBJExport", "filename.obj");
-      OBJExport obj = (OBJExport) createGraphics(10, 10, "nervoussystem.obj.OBJExport", "colored.obj");
+      OBJExport obj = (OBJExport) createGraphics(10, 10, "nervoussystem.obj.OBJExport", "matrix.obj");
       obj.setColor(true);
-      //obj.beginDraw();
-      beginRaw(obj);
+      obj.beginDraw();
       drawStructure(visMode, subdivisions, obj);
-      endRaw();
-      //obj.endDraw();
-      //obj.dispose();
+      obj.endDraw();
+      obj.dispose();
       objRecording = false;
     } 
 
@@ -63,6 +60,10 @@ class Matrix {
   public void setVisMode(int _visMode) {
     visMode = _visMode;
   }
+  
+  public int getVisMode() {
+    return visMode;
+  }
 
   void rotateMatrix(float _xRot, float _yRot) {
     xRotBuffer = _xRot;
@@ -89,7 +90,6 @@ void drawPanels(int size) {
   noFill();  
 
   smartFill(220);  
-  //smartFillAlpha(0, 20);
   pushMatrix();
   translate(0, size/2, 0);
   rotateX(PI/2);
