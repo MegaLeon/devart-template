@@ -9,6 +9,7 @@
             "android"
         ],
         "toolkits": [
+            "java",
             "webgl",
             "toxiclibs"
         ]
