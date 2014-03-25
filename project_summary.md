@@ -37,3 +37,11 @@ http://youtu.be/YaA3dAJz6sI
 ### Picasa API Integration
 Showing how different search terms lead to different images being dowloaded thanks to the Goggle Picasa APIs
 http://youtu.be/de8ctoCSosI
+
+### Android Mode
+ArsMatrix running with limited options on a Nexus 7
+https://www.youtube.com/watch?v=vvfsJg6Hax4
+
+### Live Mode
+Experimental feature in which the user's drawings are translated to the 3D Matrix in real time
+https://www.youtube.com/watch?v=uDII9JHBSNE&feature=youtu.be
