@@ -31,7 +31,8 @@ An early javascript test as the visualization techniques were coming into form. 
 
 ## Image & Videos
 ![visualizations](/project_images/06vis.png?raw=true "visualizations")
-![featured](/project_images/07featured.png?raw=true "featured")
+
+![featured](/project_images/07featured.png "featured")
 
 ### Application Overview
 A video of my playing with the app, switching visualization modes and their options, getting pictures off the Picasa's public feed and not, and toying with the color correction knobs.
