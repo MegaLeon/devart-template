@@ -17,11 +17,11 @@ Images are picked randomly from the Google Picasa’s public feeds, eaither from
 In the perfect image of the interactive installation I have in my mind, people are able to send the resulting 3D figure to a 3D printer and get a tiny, multi-colored miniature as a memento of the whole experience.
 
 ## Link to Application
-- [sourceCode](https://github.com/MegaLeon/devart-template/tree/master/project_code "ArsMatrix Processing Source Code")
+- [ArsMatrix Processing Source Code |](https://github.com/MegaLeon/devart-template/tree/master/project_code "ArsMatrix Processing Source Code")
 The Source Code is available on Girhub - as the rules do not allow me to upload binaries files. The libraries are included within the repo, so if you have Processing and Java installed it should run fine.
 
 ## Link to Prototypes
-- [ArsMatrix JS](http://arsmatrix.neocities.org/jstest.html "Prototype 01 | JS Applet")
+- [JS Applet Prototype |](http://arsmatrix.neocities.org/jstest.html "Prototype 01 | JS Applet")
 An early javascript test as the visualization techniques were coming into form. Use the GUI on the right to change settings and drag the slider to switch between different paintings, click "Start Mapping" to restart the process.
 
 ## Libraries Used
