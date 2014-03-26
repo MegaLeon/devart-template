@@ -1,5 +1,6 @@
 Todays I started integrating the project with Google technologies. That will grant the users the possibility of picking up an image to be "arsmatrix-ified" from a vast online pool instead of being limited to an eventual gallery internal to the program.
-I was initally planning to use the [Temboo](https://temboo.com/ "Temboo") libraries for the APIs call since they looked quite simple to use, but got a bit discouraged after exploring them deeper and finding out that you got limited calls and data use with a free account. Who know how many innocent megabytes and debug run will my testing take away from my PC? That said, I looked into implementing a solution myself.
+
+I was initially  planning to use the [Temboo](https://temboo.com/ "Temboo") libraries for the APIs call since they looked quite simple to use, but got a bit discouraged after exploring them deeper and finding out that you got limited calls and data use with a free account. Who know how many innocent megabytes and debug run will my testing take away from my PC? That said, I looked into implementing a solution myself.
 
 The experience was less painful than I expected: even if I haven't found a specific tutorial related to Processing, the Picasa Web Albums (used internally by Google+) APIs [Starting Guides](https://developers.google.com/picasa-web/docs/2.0/developers_guide_java "Starting Guides")  are quite extensive and it's great how Processing supports pure Java, making me able to import all the needed libraries with ease.
 
