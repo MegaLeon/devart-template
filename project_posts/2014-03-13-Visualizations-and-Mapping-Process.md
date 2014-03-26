@@ -6,12 +6,12 @@ First of all, we set the subdivisions of the 3D matrix, also known as how many �
 
 We start reading the image pixels are read one by one: when a pixel is mapped, its color values are re-arranged inside those arrays. Red, green, and blue values go from 0 to 255, so, for example, a pixel has a red intensity of 120 and we have a array with 12 slots, the slot number 6 will have its value increased.
 
-With this process, the slots corresponding to the colors which are more frequent in the image will have higher values.
+With this process, the slots corresponding to the colors that are more frequent in the image will have higher values.
 
 ![rgbcube](/project_images/06rgb.png?raw=true "rgbcube")
 
 During the “draw” process, 3D shapes are drawn in the 3D space according to the colorspace: let’s image red, green and blue as the sides of a cube, like in the image above. If, by following a side of the cube we are going through the “red” direction, 3D shapes in that area will be bigger if the image has lots of reddish colors.
 
-Thiis process can be bent to other color modes, such as hue, saturation and value. There were lots of different visualization ideas popping in my mind.
+This process can be bent to other color modes, such as hue, saturation and value. There were lots of different visualization ideas popping in my mind.
 
 If we alternate “analyse” and “draw” processes, we will have an animated sequence as the 3D shapes grow while the image is being mapped more and more. Or, if we “analyse” the whole image and then do the “drawing”, the 3D matrix will be displayed instantly. It’s a fast process that allows real-time manipulation and changes. More to come.
