@@ -60,4 +60,4 @@ for (int currentVert = 0; currentVert < vertexList.length ; currentVert += 12) {
 
 ![metaballs](/project_images/05meta.png "metaballs")
 
-I am happy to have "hacked" this effect as the final result looks great and it was my first time playing around with Toxiclibs, even tho I knew of their good reputation in the Processins environment. They are a truly powerful library and I am looking forward to use it more in future projects.
+I am happy to have "hacked" this effect as the final result looks great and it was my first time playing around with Toxiclibs, even tho I knew of their good reputation in the Processing  environment. It is a truly powerful library and I am looking forward to use it more in future projects.
