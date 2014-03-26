@@ -16,7 +16,7 @@ imageUrls = new String[searchResultsFeed.getPhotoEntries().size()];
 With a string replacement, I load the URL for a specific image size - by default the 72px thumbnail is loaded, in my case I am requesting the address of a square-cropped image 512px wide. 
 This way I can load them up straight away, waiting only less than a second for the image to be downloaded (Processing got a nice method called requestImage() that, differently than loadImage(), keeps the application running while the image is being loaded, so I can display a little fancy loading box.
 
-If you have noticed that little checkbox above the picture, I implemented the possibility of limiting the search off the public feed for featured images. Doing this was easier than I thought (even if I haven’t found an official method online, I found out almost by chance): all I needed was chaning the URL for my query from
+If you have noticed that little checkbox above the picture, I implemented the possibility of limiting the search off the public feed for featured images. Doing this was easier than I thought (even if I haven’t found an official method online, I found out almost by chance): all I needed was changing the URL for my query from
 ```
 URL("https://picasaweb.google.com/data/feed/api/all");
 ```
