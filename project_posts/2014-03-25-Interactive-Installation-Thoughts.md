@@ -12,6 +12,6 @@ I remember my experience when I first visited the Science Museum in London and t
 
 ![installation_concepts03](/project_images/instConcept03.png "installation_concepts03")
 
-I am not acquainted with the level that 3D printing technology reached nowadays, so I am unsure of how fast the printing process would be in a scenario where many users are interacting with the installation one after another, but when I imagine a very small 3D print and and some kind of queue system with multiple 3D printing bays, it does not sound totally unreasonable. 
+I am not acquainted with the level that 3D printing technology reached nowadays, so I am unsure of how fast the printing process would be in a scenario where many users are interacting with the installation one after another, but when I imagine a very small 3D print and some kind of queue system with multiple 3D printing bays, it does not sound totally unreasonable. 
 
-I am experimenting into getting a coloured mesh exported from processing (right now I am able to export the mesh, altough the color UV coordinates seem wrong) thanks to the ![objexporter](http://n-e-r-v-o-u-s.com/tools/obj/ “objexporter”) library, which was developed precisely for 3D printing output from processing. I believe that the step from this to actual 3D printing will not be large at all.
+I am experimenting into getting a coloured mesh exported from processing (right now I am able to export the mesh, although  the color UV coordinates seem wrong) thanks to the ![objexporter](http://n-e-r-v-o-u-s.com/tools/obj/ “objexporter”) library, which was developed precisely for 3D printing output from processing. I believe that the step from this to actual 3D printing will not be large at all.
