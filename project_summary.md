@@ -18,7 +18,7 @@ In the perfect image of the interactive installation I have in my mind, people a
 
 ## Link to Application
 - [ArsMatrix Processing Source Code |](https://github.com/MegaLeon/devart-template/tree/master/project_code "ArsMatrix Processing Source Code")
-The Source Code is available on Girhub - as the rules do not allow me to upload binaries files. The libraries are included within the repo, so if you have Processing and Java installed it should run fine.
+The Source Code is available on Github - as the rules do not allow me to upload binaries files. The libraries are included within the repo, so if you have Processing and Java installed it should run fine.
 
 ## Link to Prototypes
 - [JS Applet Prototype |](http://arsmatrix.neocities.org/jstest.html "Prototype 01 | JS Applet")
