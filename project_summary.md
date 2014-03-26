@@ -8,11 +8,11 @@ because 2 dimensions are not enough.
 - Leonardo Cavaletti - https://github.com/MegaLeon
 
 ## Description
-ArsMatrix is an Processing Project aimed at becoming an interactive installation where people can explore and witness the properties of colors across multiple dimensions. ArsMatrix takes a 2-dimensional images and maps its color-information to a 3-dimensional Matrix, generating a 3D structure unique to each each image.
+ArsMatrix is a Processing Project aimed at becoming an interactive installation where people can explore and witness the properties of colors across multiple dimensions. ArsMatrix takes a 2-dimensional image and maps its color-information to a 3-dimensional Matrix, generating a 3D structure unique to each image.
 
-The animated process and will show the 3D piece growing as the image is being scanned. The user will be able to change color balances and 3D visualization styles and see their changes in real time, hopefully coming to an higher understanding of color in what I hope to be a mesmerizing experience.
+The animated process and will show the 3D piece growing as the image is being scanned. The user will be able to change color balances and 3D visualization styles and see their changes in real time, hopefully coming to a higher understanding of color in what I hope to be a mesmerizing experience.
 
-Images are picked randomly from the Google Picasa’s public feeds, eaither from the featured images album or using a word chosen by the user as a search bias. During the last development stage I implemented an experimental "live mode" uin which people will be able to paint a sketch on a blank canvas and see their images coming to life as 3D structures in real time, encouraging them to unleash their hidden artist.
+Images are picked randomly from the Google Picasa’s public feeds, either from the featured images album or using a word chosen by the user as a search bias. During the last development stage I implemented an experimental "live mode" in which people will be able to paint a sketch on a blank canvas and see their images coming to life as 3D structures in real time, encouraging them to unleash their hidden artist.
 
 In the perfect image of the interactive installation I have in my mind, people are able to send the resulting 3D figure to a 3D printer and get a tiny, multi-colored miniature as a memento of the whole experience.
 
@@ -43,7 +43,7 @@ A video of my playing with the app, switching visualization modes and their opti
 http://youtu.be/YaA3dAJz6sI
 
 ### Picasa API Integration
-Showing how different search terms lead to different images being dowloaded thanks to the Goggle Picasa APIs
+Showing how different search terms lead to different images being downloaded thanks to the Goggle Picasa APIs
 http://youtu.be/de8ctoCSosI
 
 ### Android Mode
